@@ -1,19 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>主页</title>
-    <meta charset="UTF-8">
-    <#--<#assign ctx=request.contextPath />-->
-    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.css">
-</head>
-<body>
-    <h1>this is index!!!!1111000路径：</h1>
-<script src="/jquery-3.3.1.min.js"></script>
-<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-</body>
-<script>
-    $(function () {
-        alert(0000000);
-    });
-</script>
-</html>
+<#include "common/_layout.ftl">
+<#include "common/_topnav.ftl">
+<@head title="主页"></@head>
+<@body>
+    <div class="col-md-12">
+    <@topnav></@topnav>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered text-center" style="position: relative; top: 70px;">
+            <thead>
+                <tr class="thead">
+                    <td><b>hhh</b></td>
+                    <td><b>hhh</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tbody">
+                    <td>xxx</td>
+                    <td>xxx</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <button class="btn btn-default btn-sm pull-left" id="addTd">添加</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</@body>
+<@foot>
+    <script>
+        $(function() {
+            /**
+             * 添加分类
+             * */
+            $("#addTd").on("click", function () {
+                $(".thead").append("<td><a href='#'><b>标题</b></a></td>");
+                $(".tbody").append("<td><a href='#'>你好</a></td>");
+            });
+        });
+    </script>
+</@foot>

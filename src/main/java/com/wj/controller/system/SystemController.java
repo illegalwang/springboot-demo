@@ -22,4 +22,10 @@ public class SystemController extends BaseController {
         return "index";
     }
 
+    @GetMapping("/layout")
+    public String layout() {
+        log.info("----去框架---------------------------------------------------------------");
+        return "common/_layout";
+    }
+
 }
