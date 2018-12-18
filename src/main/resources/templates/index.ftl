@@ -3,7 +3,7 @@
 <@head title="主页"></@head>
 <@body>
     <div class="col-md-12">
-    <@topnav></@topnav>
+        <@topnav></@topnav>
     </div>
     <div class="col-md-12">
         <table class="table table-bordered text-center" style="position: relative; top: 70px;">
