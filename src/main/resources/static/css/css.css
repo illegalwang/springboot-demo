@@ -6,11 +6,13 @@
 body {
     background-color: white;
 }
+
 /*bootstrap的顶部导航*/
 .topnav {
     background-color: white;
     height: 50px;
 }
+
 /*自定义顶部导航外部div需要添加此类*/
 .topnavbar {
     height: 70px;
@@ -19,6 +21,7 @@ body {
     border-bottom: solid 1px #b6b3b5;
     z-index: 1;
 }
+
 /*自定义顶部导航*/
 .newtopnav {
     height: 70px;
@@ -27,36 +30,72 @@ body {
     background-color: white;
     border-bottom: solid 1px #b6b3b5;
 }
+
 .topnavspan {
     position: relative;
     margin-top: 2%;
     margin-right: 2%;
 }
+
 /*页面中部div*/
 .body-div {
     position: relative;
     margin-top: 85px;
-    border: solid 1px;
 }
-.wrapper-inside-div {
+
+.body-inside-div {
     position: relative;
     margin: 0px 5%;
 }
+
 .background-div {
     position: relative;
     background-color: #ccffff;
     padding-bottom: 15px;
 }
+
+.body-inside-div > div {
+    width: 100%;
+    margin-top: 10px;
+    background-color: white;
+    border: solid 1px #e0dddf;
+    border-radius: 5px; /*设置div圆角*/
+    padding: 10px;
+}
+
 /*页面底部div*/
 .foot-div {
     position: relative;
     background-color: white;
     border-top: solid 1px #b6b3b5;
 }
-.footsection h3 {
+
+.footsection {
+    padding: 0px;
+}
+
+.footsection h5 {
+    margin: 0px 0px;
     border-bottom: solid 1px #caccce;
 }
+
 .footsection ul {
     list-style: none; /*去掉ul li 前面的点*/
     padding: 0px;
+    margin: 0px;
+}
+
+.foot-inside-div {
+    position: relative;
+    margin: 0px 5%;
+    padding-top: 10px;
+}
+
+.foot-inside-div > div {
+    position: relative;
+    width: 100%;
+    margin:100px 0px 20px;
+}
+.foot-inside-div .table > tbody > tr > td {
+    border: 0px solid transparent;
 }

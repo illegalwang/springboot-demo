@@ -1,31 +1,22 @@
 <#macro footwrapper>
 <div class="foot-div col-md-12">
-    <div class="wrapper-inside-div">
+    <div class="foot-inside-div">
         <table class="table">
-            <tbody>
             <tr>
                 <td>
                     <section class="footsection">
-                        <h3>xxxx</h3>
+                        <h5><b>网站信息</b></h5>
                         <ul>
-                            <li><a href="#">dddd</a></li>
+                            <li><a href="#">在线用户</a></li>
+                            <li><a href="#">系统设置</a></li>
                         </ul>
                     </section>
                 </td>
                 <td>
                     <section class="footsection">
-                        <h3>xxxx</h3>
+                        <h5><b>xxxx</b></h5>
                         <ul>
                             <li><a href="#">dddd</a></li>
-                            <li><a href="#">dddd</a></li>
-                            <li><a href="#">dddd</a></li>
-                        </ul>
-                    </section>
-                </td>
-                <td>
-                    <section class="footsection">
-                        <h3>xxxx</h3>
-                        <ul>
                             <li><a href="#">dddd</a></li>
                             <li><a href="#">dddd</a></li>
                         </ul>
@@ -33,16 +24,30 @@
                 </td>
                 <td>
                     <section class="footsection">
-                        <h3>xxxx</h3>
+                        <h5><b>疑问</b></h5>
                         <ul>
-                            <li><a href="#">dddd</a></li>
-                            <li><a href="#">dddd</a></li>
+                            <li><a href="#">提出BUG</a></li>
+                            <li><a href="#">ddddsssssssssssss</a></li>
+                        </ul>
+                    </section>
+                </td>
+                <td>
+                    <section class="footsection">
+                        <h5><b>关于我</b></h5>
+                        <ul>
+                            <li><a href="https://github.com/illegalwang" target="_blank">github</a></li>
+                            <li><a href="https://cnblogs.com/illegalwang" target="_blank">博客</a></li>
+                            <li>illegalwang@163.com</li>
                         </ul>
                     </section>
                 </td>
             </tr>
             </tbody>
         </table>
+        <div class="text-center">
+            <img src="logo2.png" alt="logo2"><br>
+            <span>xxxxx公司 @copyright  xxxx许可</span>
+        </div>
     </div>
 </div>
 </#macro>
