@@ -36,7 +36,11 @@ public class SharedJedisPoolTest {
             System.out.println(shardedJedis.get("k12"));
             System.out.println(shardedJedis.get("k7"));
         } catch(Exception e) {
-            e.printStackTrace();
+            System.err.println("=========================================================");
+            System.err.println("|检查一下是不是你的redis配置有误，或者服务没启动，或者。。。|");
+            System.err.println("=========================================================");
+            // 终止当前正在运行的jvm
+            System.exit(500);
         } finally {
             if (null != shardedJedis) {
                 // 关闭

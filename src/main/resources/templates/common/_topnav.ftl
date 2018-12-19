@@ -3,10 +3,11 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <img class="navbar-brand" src="logo.jpg" alt="logo">
+            <#--<img class="navbar-brand" src="logo.jpg" alt="logo">
             <a class="navbar-brand" href="#">
                 ITWJ
-            </a>
+            </a>-->
+            <img src="logo2.png" alt="logo2" style="width: 80px;height: 49px;">
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
