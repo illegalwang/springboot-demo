@@ -50,17 +50,73 @@ body {
 
 .background-div {
     position: relative;
-    background-color: #ccffff;
+    background-color: #f3f6ff;
     padding-bottom: 15px;
 }
 
-.body-inside-div > div {
-    width: 100%;
-    margin-top: 10px;
+.body-inside-div .group-div {
+    /*float: left;*/
+    padding: 0px 14px;
+}
+
+.body-inside-div .group-child {
     background-color: white;
     border: solid 1px #e0dddf;
     border-radius: 5px; /*设置div圆角*/
-    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.body-inside-div .group-child h3 {
+    padding: 0px 15px;
+}
+
+.body-inside-div .group-child img {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.body-inside-div .group-child ul {
+    list-style: none;
+    margin: 10px;
+    padding-left: 10px;
+}
+
+/*.body-inside-div .group-child ul i {
+    width: 15px;
+    height: 15px;
+    color: #4781de;
+    margin-right: 10px;
+}*/
+
+.body-inside-div .group-child ul img{
+    width: 15px;
+    height: 15px;
+    margin-top: 0px;
+    margin-right: 10px;
+}
+
+.body-inside-div .group-child ul h5 {
+    cursor: pointer;
+    padding-right: 15px;
+}
+
+.body-inside-div .group-child ul h5 .omit {
+    display: none;
+}
+
+.body-inside-div .group-child .group-foot {
+    position: relative;
+    width: 100%;
+    margin: 10px 0px;
+    padding: 0px 20px;
+}
+
+.body-inside-div .group-child .group-foot > a{
+    font-size: 5px;
+}
+
+.body-inside-div .group-child .group-foot a {
+    cursor: pointer;
 }
 
 /*页面底部div*/
@@ -94,8 +150,9 @@ body {
 .foot-inside-div > div {
     position: relative;
     width: 100%;
-    margin:100px 0px 20px;
+    margin: 100px 0px 20px;
 }
+
 .foot-inside-div .table > tbody > tr > td {
     border: 0px solid transparent;
 }
