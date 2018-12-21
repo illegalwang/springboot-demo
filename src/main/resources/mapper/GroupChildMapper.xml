@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wj.dao.GroupChildMapper">
+    <select id="listByUsername" parameterType="string" resultType="com.wj.bean.model.IndexGroupChild">
+        select
+            igc.web_id "webId",
+            igc.group_id "groupId",
+            igc.web_url "webUrl",
+            igc.web_name "webName",
+            igc.web_icon "webIcon",
+            igc.if_des "ifDes"
+        FROM index_group_child igc
+        LEFT JOIN index_web_group iwg on igc.group_id = iwg.GROUP_ID
+        LEFT JOIN sys_user su on su.user_id = iwg.user_id
+        WHERE
+            su.username = #{username};
+    </select>
+</mapper>

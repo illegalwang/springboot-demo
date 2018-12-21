@@ -234,73 +234,73 @@ public class IndexWebGroupExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameIsNull() {
-            addCriterion("TYPE_NAME is null");
+        public Criteria andTitleIsNull() {
+            addCriterion("TITLE is null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameIsNotNull() {
-            addCriterion("TYPE_NAME is not null");
+        public Criteria andTitleIsNotNull() {
+            addCriterion("TITLE is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameEqualTo(String value) {
-            addCriterion("TYPE_NAME =", value, "typeName");
+        public Criteria andTitleEqualTo(String value) {
+            addCriterion("TITLE =", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameNotEqualTo(String value) {
-            addCriterion("TYPE_NAME <>", value, "typeName");
+        public Criteria andTitleNotEqualTo(String value) {
+            addCriterion("TITLE <>", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameGreaterThan(String value) {
-            addCriterion("TYPE_NAME >", value, "typeName");
+        public Criteria andTitleGreaterThan(String value) {
+            addCriterion("TITLE >", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameGreaterThanOrEqualTo(String value) {
-            addCriterion("TYPE_NAME >=", value, "typeName");
+        public Criteria andTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("TITLE >=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameLessThan(String value) {
-            addCriterion("TYPE_NAME <", value, "typeName");
+        public Criteria andTitleLessThan(String value) {
+            addCriterion("TITLE <", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameLessThanOrEqualTo(String value) {
-            addCriterion("TYPE_NAME <=", value, "typeName");
+        public Criteria andTitleLessThanOrEqualTo(String value) {
+            addCriterion("TITLE <=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameLike(String value) {
-            addCriterion("TYPE_NAME like", value, "typeName");
+        public Criteria andTitleLike(String value) {
+            addCriterion("TITLE like", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameNotLike(String value) {
-            addCriterion("TYPE_NAME not like", value, "typeName");
+        public Criteria andTitleNotLike(String value) {
+            addCriterion("TITLE not like", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameIn(List<String> values) {
-            addCriterion("TYPE_NAME in", values, "typeName");
+        public Criteria andTitleIn(List<String> values) {
+            addCriterion("TITLE in", values, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameNotIn(List<String> values) {
-            addCriterion("TYPE_NAME not in", values, "typeName");
+        public Criteria andTitleNotIn(List<String> values) {
+            addCriterion("TITLE not in", values, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameBetween(String value1, String value2) {
-            addCriterion("TYPE_NAME between", value1, value2, "typeName");
+        public Criteria andTitleBetween(String value1, String value2) {
+            addCriterion("TITLE between", value1, value2, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNameNotBetween(String value1, String value2) {
-            addCriterion("TYPE_NAME not between", value1, value2, "typeName");
+        public Criteria andTitleNotBetween(String value1, String value2) {
+            addCriterion("TITLE not between", value1, value2, "title");
             return (Criteria) this;
         }
 
@@ -374,76 +374,6 @@ public class IndexWebGroupExample {
             return (Criteria) this;
         }
 
-        public Criteria andTitleIsNull() {
-            addCriterion("TITLE is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleIsNotNull() {
-            addCriterion("TITLE is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleEqualTo(String value) {
-            addCriterion("TITLE =", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleNotEqualTo(String value) {
-            addCriterion("TITLE <>", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleGreaterThan(String value) {
-            addCriterion("TITLE >", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleGreaterThanOrEqualTo(String value) {
-            addCriterion("TITLE >=", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleLessThan(String value) {
-            addCriterion("TITLE <", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleLessThanOrEqualTo(String value) {
-            addCriterion("TITLE <=", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleLike(String value) {
-            addCriterion("TITLE like", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleNotLike(String value) {
-            addCriterion("TITLE not like", value, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleIn(List<String> values) {
-            addCriterion("TITLE in", values, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleNotIn(List<String> values) {
-            addCriterion("TITLE not in", values, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleBetween(String value1, String value2) {
-            addCriterion("TITLE between", value1, value2, "title");
-            return (Criteria) this;
-        }
-
-        public Criteria andTitleNotBetween(String value1, String value2) {
-            addCriterion("TITLE not between", value1, value2, "title");
-            return (Criteria) this;
-        }
-
         public Criteria andImageIsNull() {
             addCriterion("IMAGE is null");
             return (Criteria) this;
@@ -511,6 +441,66 @@ public class IndexWebGroupExample {
 
         public Criteria andImageNotBetween(String value1, String value2) {
             addCriterion("IMAGE not between", value1, value2, "image");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeIsNull() {
+            addCriterion("THEME is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeIsNotNull() {
+            addCriterion("THEME is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeEqualTo(Integer value) {
+            addCriterion("THEME =", value, "theme");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeNotEqualTo(Integer value) {
+            addCriterion("THEME <>", value, "theme");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeGreaterThan(Integer value) {
+            addCriterion("THEME >", value, "theme");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("THEME >=", value, "theme");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeLessThan(Integer value) {
+            addCriterion("THEME <", value, "theme");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeLessThanOrEqualTo(Integer value) {
+            addCriterion("THEME <=", value, "theme");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeIn(List<Integer> values) {
+            addCriterion("THEME in", values, "theme");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeNotIn(List<Integer> values) {
+            addCriterion("THEME not in", values, "theme");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeBetween(Integer value1, Integer value2) {
+            addCriterion("THEME between", value1, value2, "theme");
+            return (Criteria) this;
+        }
+
+        public Criteria andThemeNotBetween(Integer value1, Integer value2) {
+            addCriterion("THEME not between", value1, value2, "theme");
             return (Criteria) this;
         }
     }

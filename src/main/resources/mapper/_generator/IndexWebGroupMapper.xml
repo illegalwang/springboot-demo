@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.wj.bean.model.IndexWebGroup">
     <id column="GROUP_ID" jdbcType="INTEGER" property="groupId" />
     <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
-    <result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName" />
-    <result column="LITTLE_TITLE" jdbcType="VARCHAR" property="littleTitle" />
     <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="LITTLE_TITLE" jdbcType="VARCHAR" property="littleTitle" />
     <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="THEME" jdbcType="INTEGER" property="theme" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    GROUP_ID, USER_ID, TYPE_NAME, LITTLE_TITLE, TITLE, IMAGE
+    GROUP_ID, USER_ID, TITLE, LITTLE_TITLE, IMAGE, THEME
   </sql>
   <select id="selectByExample" parameterType="com.wj.bean.model.IndexWebGroupExample" resultMap="BaseResultMap">
     select
@@ -103,11 +103,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.wj.bean.model.IndexWebGroup">
-    insert into index_web_group (GROUP_ID, USER_ID, TYPE_NAME, 
-      LITTLE_TITLE, TITLE, IMAGE
+    insert into index_web_group (GROUP_ID, USER_ID, TITLE, 
+      LITTLE_TITLE, IMAGE, THEME
       )
-    values (#{groupId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
-      #{littleTitle,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}
+    values (#{groupId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{littleTitle,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{theme,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wj.bean.model.IndexWebGroup">
@@ -119,17 +119,17 @@
       <if test="userId != null">
         USER_ID,
       </if>
-      <if test="typeName != null">
-        TYPE_NAME,
+      <if test="title != null">
+        TITLE,
       </if>
       <if test="littleTitle != null">
         LITTLE_TITLE,
       </if>
-      <if test="title != null">
-        TITLE,
-      </if>
       <if test="image != null">
         IMAGE,
+      </if>
+      <if test="theme != null">
+        THEME,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -139,17 +139,17 @@
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="typeName != null">
-        #{typeName,jdbcType=VARCHAR},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
       </if>
       <if test="littleTitle != null">
         #{littleTitle,jdbcType=VARCHAR},
       </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null">
+        #{theme,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -168,17 +168,17 @@
       <if test="record.userId != null">
         USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.typeName != null">
-        TYPE_NAME = #{record.typeName,jdbcType=VARCHAR},
+      <if test="record.title != null">
+        TITLE = #{record.title,jdbcType=VARCHAR},
       </if>
       <if test="record.littleTitle != null">
         LITTLE_TITLE = #{record.littleTitle,jdbcType=VARCHAR},
       </if>
-      <if test="record.title != null">
-        TITLE = #{record.title,jdbcType=VARCHAR},
-      </if>
       <if test="record.image != null">
         IMAGE = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.theme != null">
+        THEME = #{record.theme,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -189,10 +189,10 @@
     update index_web_group
     set GROUP_ID = #{record.groupId,jdbcType=INTEGER},
       USER_ID = #{record.userId,jdbcType=VARCHAR},
-      TYPE_NAME = #{record.typeName,jdbcType=VARCHAR},
-      LITTLE_TITLE = #{record.littleTitle,jdbcType=VARCHAR},
       TITLE = #{record.title,jdbcType=VARCHAR},
-      IMAGE = #{record.image,jdbcType=VARCHAR}
+      LITTLE_TITLE = #{record.littleTitle,jdbcType=VARCHAR},
+      IMAGE = #{record.image,jdbcType=VARCHAR},
+      THEME = #{record.theme,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -200,17 +200,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.wj.bean.model.IndexWebGroup">
     update index_web_group
     <set>
-      <if test="typeName != null">
-        TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
       </if>
       <if test="littleTitle != null">
         LITTLE_TITLE = #{littleTitle,jdbcType=VARCHAR},
       </if>
-      <if test="title != null">
-        TITLE = #{title,jdbcType=VARCHAR},
-      </if>
       <if test="image != null">
         IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="theme != null">
+        THEME = #{theme,jdbcType=INTEGER},
       </if>
     </set>
     where GROUP_ID = #{groupId,jdbcType=INTEGER}
@@ -218,10 +218,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wj.bean.model.IndexWebGroup">
     update index_web_group
-    set TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+    set TITLE = #{title,jdbcType=VARCHAR},
       LITTLE_TITLE = #{littleTitle,jdbcType=VARCHAR},
-      TITLE = #{title,jdbcType=VARCHAR},
-      IMAGE = #{image,jdbcType=VARCHAR}
+      IMAGE = #{image,jdbcType=VARCHAR},
+      THEME = #{theme,jdbcType=INTEGER}
     where GROUP_ID = #{groupId,jdbcType=INTEGER}
       and USER_ID = #{userId,jdbcType=VARCHAR}
   </update>

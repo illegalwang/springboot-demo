@@ -81,12 +81,9 @@ body {
     padding-left: 10px;
 }
 
-/*.body-inside-div .group-child ul i {
-    width: 15px;
-    height: 15px;
-    color: #4781de;
-    margin-right: 10px;
-}*/
+.body-inside-div .group-child ul a {
+    text-decoration: none;
+}
 
 .body-inside-div .group-child ul img{
     width: 15px;
@@ -116,7 +113,7 @@ body {
 }
 
 .body-inside-div .group-child .group-foot a {
-    cursor: pointer;
+    text-decoration: none;
 }
 
 /*页面底部div*/

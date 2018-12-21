@@ -11,6 +11,13 @@ public class SysUser {
 
     private Integer indexTheme;
 
+    public SysUser() {
+    }
+
+    public SysUser(String username) {
+        this.username = username;
+    }
+
     public String getUserId() {
         return userId;
     }
