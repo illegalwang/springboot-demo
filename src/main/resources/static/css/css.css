@@ -96,7 +96,7 @@ body {
 }
 
 .body-inside-div .group-child ul h5 {
-    cursor: pointer;
+    cursor: pointer; /*鼠标小手形态*/
     padding-right: 15px;
 }
 

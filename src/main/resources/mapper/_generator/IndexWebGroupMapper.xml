@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wj.dao.mapper.IndexWebGroupMapper">
+  <resultMap id="BaseResultMap" type="com.wj.bean.model.IndexWebGroup">
+    <id column="GROUP_ID" jdbcType="INTEGER" property="groupId" />
+    <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName" />
+    <result column="LITTLE_TITLE" jdbcType="VARCHAR" property="littleTitle" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    GROUP_ID, USER_ID, TYPE_NAME, LITTLE_TITLE, TITLE, IMAGE
+  </sql>
+  <select id="selectByExample" parameterType="com.wj.bean.model.IndexWebGroupExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from index_web_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.wj.bean.model.IndexWebGroupKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from index_web_group
+    where GROUP_ID = #{groupId,jdbcType=INTEGER}
+      and USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.wj.bean.model.IndexWebGroupKey">
+    delete from index_web_group
+    where GROUP_ID = #{groupId,jdbcType=INTEGER}
+      and USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wj.bean.model.IndexWebGroupExample">
+    delete from index_web_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wj.bean.model.IndexWebGroup">
+    insert into index_web_group (GROUP_ID, USER_ID, TYPE_NAME, 
+      LITTLE_TITLE, TITLE, IMAGE
+      )
+    values (#{groupId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
+      #{littleTitle,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wj.bean.model.IndexWebGroup">
+    insert into index_web_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        GROUP_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="typeName != null">
+        TYPE_NAME,
+      </if>
+      <if test="littleTitle != null">
+        LITTLE_TITLE,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="image != null">
+        IMAGE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="littleTitle != null">
+        #{littleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wj.bean.model.IndexWebGroupExample" resultType="java.lang.Long">
+    select count(*) from index_web_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update index_web_group
+    <set>
+      <if test="record.groupId != null">
+        GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeName != null">
+        TYPE_NAME = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.littleTitle != null">
+        LITTLE_TITLE = #{record.littleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        TITLE = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null">
+        IMAGE = #{record.image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update index_web_group
+    set GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
+      TYPE_NAME = #{record.typeName,jdbcType=VARCHAR},
+      LITTLE_TITLE = #{record.littleTitle,jdbcType=VARCHAR},
+      TITLE = #{record.title,jdbcType=VARCHAR},
+      IMAGE = #{record.image,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wj.bean.model.IndexWebGroup">
+    update index_web_group
+    <set>
+      <if test="typeName != null">
+        TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="littleTitle != null">
+        LITTLE_TITLE = #{littleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GROUP_ID = #{groupId,jdbcType=INTEGER}
+      and USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wj.bean.model.IndexWebGroup">
+    update index_web_group
+    set TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      LITTLE_TITLE = #{littleTitle,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      IMAGE = #{image,jdbcType=VARCHAR}
+    where GROUP_ID = #{groupId,jdbcType=INTEGER}
+      and USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>
