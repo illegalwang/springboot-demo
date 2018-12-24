@@ -1,6 +1,6 @@
 /*
  * 全局样式。
- * 边框统一颜色为：#b6b3b5。
+ * 边框统一颜色为：#e0dddf。
  * 中部颜色为：#ccffff。
  */
 body {
@@ -18,7 +18,7 @@ body {
     height: 70px;
     background-color: white;
     position: fixed;
-    border-bottom: solid 1px #b6b3b5;
+    border-bottom: solid 1px #e0dddf;
     z-index: 1;
 }
 
@@ -28,7 +28,7 @@ body {
     position: relative;
     margin: 0px 5%;
     background-color: white;
-    border-bottom: solid 1px #b6b3b5;
+    border-bottom: solid 1px #e0dddf;
 }
 
 .topnavspan {
@@ -52,6 +52,11 @@ body {
     position: relative;
     background-color: #f3f6ff;
     padding-bottom: 15px;
+}
+
+.body-inside-div .top-btn-div {
+    margin-bottom: 15px;
+    padding: 0px;
 }
 
 .body-inside-div .group-div {
@@ -120,7 +125,7 @@ body {
 .foot-div {
     position: relative;
     background-color: white;
-    border-top: solid 1px #b6b3b5;
+    border-top: solid 1px #e0dddf;
 }
 
 .footsection {

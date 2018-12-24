@@ -11,6 +11,11 @@
         <strong>说明！</strong>
         在这里您可以记录您常用的网站，并对常用网站进行分类，添加描述。不要犹豫，开始使用吧！
     </div>
+    <div class="top-btn-div col-md-12">
+        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">
+            创建栏目
+        </button>
+    </div>
     <div class="row">
         <#if webBean??>
             <#list 1..webBean.theme as x>
@@ -59,6 +64,56 @@
             </#list>
         </#if>
     </div>
+
+    <!-- 创建栏目Modal -->
+    <form class="form-horizontal" action="" method="post">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">创建栏目</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="inputTitle" class="col-sm-2 control-label">标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputTitle" placeholder="标题">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLittleTitle" class="col-sm-2 control-label">小标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputLittleTitle" placeholder="小标题">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputImage" class="col-sm-2 control-label">图片</label>
+                            <div class="col-sm-10">
+                                <input type="file" id="inputImage" accept="image/*">
+                            </div>
+                            <div class="col-md-12">
+                                <img id="imageShow" src="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     </@bodywrapper>
     <@footwrapper></@footwrapper>
 </@body>
