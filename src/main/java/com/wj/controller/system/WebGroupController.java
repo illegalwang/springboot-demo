@@ -21,9 +21,10 @@ public class WebGroupController extends BaseController {
     private static final Log log = LogFactory.getLog(WebGroupController.class);
 
     @PostMapping()
-    public void addGroup(@RequestParam(value = "imgFile") MultipartFile imgFile,
+    public String addGroup(@RequestParam(value = "imgFile") MultipartFile imgFile,
                          IndexWebGroup webGroup) {
         webGroupService.addWebGroup(webGroup, imgFile);
+        return "redirect:/";
     }
 
 }

@@ -17,7 +17,16 @@ public class UUIDUtil {
         return UUID.randomUUID().toString().replaceAll("-","");
     }
 
+    /**
+     * 获取前13位为时间的UUID
+     * @return
+     */
+    public static String getTimeUUID() {
+        return System.currentTimeMillis() + getUUID().substring(13);
+    }
+
     public static void main(String[] args) {
         System.out.println(getUUID());
+        System.out.println(getTimeUUID());
     }
 }

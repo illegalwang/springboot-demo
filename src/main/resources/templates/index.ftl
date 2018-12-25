@@ -104,9 +104,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputTheme" class="col-sm-2 control-label" name="theme">上级栏目</label>
+                            <label for="inputTheme" class="col-sm-2 control-label">上级栏目</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="inputTheme">
+                                <select class="form-control" id="inputTheme" name="theme">
                                     <option value="1">左侧</option>
                                     <option value="2">中间</option>
                                     <option value="3">右侧</option>

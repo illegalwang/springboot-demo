@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
  * 全局异常处理类
  *
  * *@ControllerAdvice 该注解定义异常处理类
- * *@ExceptionHandler 该注解声明异常处理方法
+ * *@ExceptionHandler 该注解声明异常处理方
+ *
+ * TODO 现在只有通用方法，待扩展
  * Created by wj on 2018/12/25.
  */
 @ControllerAdvice
