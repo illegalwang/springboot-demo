@@ -7,7 +7,7 @@ import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 
 /**
- * Created by wisi on 2018/12/21.
+ * Created by wj on 2018/12/21.
  */
 public interface WebGroupMapper extends Mapper<IndexWebGroup> {
     List<WebGroup> listByUsername(String username);

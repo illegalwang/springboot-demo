@@ -30,11 +30,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    /**
-     * 获取首页展示数据
-     * @param username
-     * @return
-     */
     @Override
     public WebBean findWebByUsername(String username) {
         WebBean webBean = new WebBean();

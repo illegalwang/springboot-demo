@@ -1,4 +1,4 @@
-package com.wj.controller.system;
+package com.wj.controller;
 
 import com.wj.bean.WebBean;
 import com.wj.service.UserService;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -16,12 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
  */
 //@RestController相当于@ResponseBody+@Controller方法会返回json数据，不会按照视图解析
 @Controller
-public class SystemController {
+public class SystemController extends BaseController {
 
     private static final Log log = LogFactory.getLog(SystemController.class);
-
-    @Autowired
-    private UserService userService;
 
     /**
      * 未登录访问主页

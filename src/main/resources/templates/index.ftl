@@ -66,7 +66,7 @@
     </div>
 
     <!-- 创建栏目Modal -->
-    <form class="form-horizontal" action="" method="post">
+    <form class="form-horizontal" action="group" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -78,37 +78,45 @@
                         <div class="form-group">
                             <label for="inputTitle" class="col-sm-2 control-label">标题</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputTitle" placeholder="标题">
+                                <input type="text" class="form-control" id="inputTitle" name="title" placeholder="标题">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputLittleTitle" class="col-sm-2 control-label">小标题</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputLittleTitle" placeholder="小标题">
+                                <input type="text" class="form-control" id="inputLittleTitle" name="littleTitle" placeholder="小标题">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputImage" class="col-sm-2 control-label">图片</label>
                             <div class="col-sm-10">
-                                <input type="file" id="inputImage" accept="image/*">
+                                <#-- accept="image/*"  只能上传图片格式 -->
+                                <input type="file" class="btn-default" id="inputImage" name="imgFile" accept="image/*" style="display: none;">
+                                <div class="input-group">
+                                      <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" onclick="$('#inputImage').click()">上传图片</button>
+                                      </span>
+                                    <input type="text" id="inputImgPath" class="form-control" disabled>
+                                </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-10 col-md-offset-2 imgDiv text-center">
                                 <img id="imageShow" src="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Remember me
-                                    </label>
-                                </div>
+                            <label for="inputTheme" class="col-sm-2 control-label" name="theme">上级栏目</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="inputTheme">
+                                    <option value="1">左侧</option>
+                                    <option value="2">中间</option>
+                                    <option value="3">右侧</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary">保存</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
                     </div>
                 </div>
             </div>

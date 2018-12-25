@@ -38,6 +38,7 @@
                             <li><a href="https://github.com/illegalwang" target="_blank">github</a></li>
                             <li><a href="https://cnblogs.com/illegalwang" target="_blank">博客</a></li>
                             <li>illegalwang@163.com</li>
+                            <li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=156586553&amp;site=qq&amp;menu=yes" target="_blank">QQ</a></li>
                         </ul>
                     </section>
                 </td>
