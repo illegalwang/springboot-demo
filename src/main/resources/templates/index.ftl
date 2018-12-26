@@ -47,8 +47,10 @@
                                     </#if>
                                     <div class="group-foot">
                                         <#if web.children?size-7 &gt; 0>
-                                            <a class="text-muted" id="showMoreBtn" href="javascript:void(0)"><#-- onclick="showMoreUrl(this)"-->
-                                                <i class="glyphicon glyphicon-triangle-bottom"></i>&nbsp;${web.children?size-7}&nbsp;more
+                                            <a class="showMoreBtn text-muted" href="javascript:void(0)">
+                                                <i class="glyphicon glyphicon-triangle-bottom"></i>
+                                                <span>&nbsp;${web.children?size-7}&nbsp;more</span>
+                                                <span style="display: none;">&nbsp;close&nbsp;</span>
                                             </a>
                                         <#else>
                                             <span style="cursor: default;">&nbsp;</span>

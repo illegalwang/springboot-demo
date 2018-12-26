@@ -54,10 +54,11 @@ function getGroupId(groupId) {
  * 显示更多的a标签
  * */
 $(function () {
-    $("#showMoreBtn").on('click', function () {
-        console.log($(this));
-        console.log($(this).parents(".group-div").children(".group-child").children("ul").children(".li-hidden"));
-        $(this).parents(".group-div").children(".group-child").children("ul").children(".li-hidden").toggle();
+    $(".showMoreBtn").on('click', function () {
+        $(this).parents(".group-div").children(".group-child").children("ul").children(".li-hidden").slideToggle();
+        $(this).children("i").attr("class", $(this).children("i").attr("class") == "glyphicon glyphicon-triangle-top" ?
+            "glyphicon glyphicon-triangle-bottom" : "glyphicon glyphicon-triangle-top");
+        $(this).children("span").toggle();
     });
 
 });
