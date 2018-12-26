@@ -1,5 +1,6 @@
 package com.wj.controller;
 
+import com.wj.service.GroupChildService;
 import com.wj.service.UserService;
 import com.wj.service.WebGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,4 +15,6 @@ public class BaseController {
     protected UserService userService;
     @Autowired
     protected WebGroupService webGroupService;
+    @Autowired
+    protected GroupChildService groupChildService;
 }
