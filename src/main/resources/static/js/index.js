@@ -60,5 +60,4 @@ $(function () {
             "glyphicon glyphicon-triangle-bottom" : "glyphicon glyphicon-triangle-top");
         $(this).children("span").toggle();
     });
-
 });

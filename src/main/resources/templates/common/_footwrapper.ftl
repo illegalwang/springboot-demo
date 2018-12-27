@@ -46,7 +46,7 @@
             </tbody>
         </table>
         <div class="text-center">
-            <img src="/img/index/logo2.png" alt="logo2"><br>
+            <img src="/img/index/logo2-lucency.png" alt="logo2"><br>
             <span>xxxxx公司 @copyright  xxxx许可</span>
         </div>
     </div>

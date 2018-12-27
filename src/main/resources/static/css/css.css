@@ -185,3 +185,52 @@ body {
     width: 570px;
     heigth: 380px;
 }
+
+/*登陆页面*/
+.login-div {
+    position: relative;
+    width: 300px;
+    height: 190px;
+    border: solid 1px #e0dddf;
+    background-color: white;
+    border-radius: 5px;
+    margin: auto;
+    padding: 10px;
+}
+
+.login-img {
+    position: relative;
+    margin-top: 20%;
+    margin-bottom: 30px;
+    width: 147px;
+    height: 73px;
+}
+
+.login-btn {
+    position: relative;
+    width: 100%;
+}
+
+/*返回顶部*/
+.back-top {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border: solid 1px #e0dddf;
+    border-radius: 5px;
+    background-color: white;
+    bottom: 50px;
+    right: 10px;
+    padding: 8px 10px 10px 8px;
+    display: none;
+}
+/* TODO 如果想使返回顶部按钮固定在页脚上面，需要用到这段
+ * http://www.it1352.com/567175.html 示例
+.fixed-back-top {
+    position: absolute! important;
+    bottom: 0px! important;
+}*/
+
+.back-top > i {
+    font-size: 30px;
+}

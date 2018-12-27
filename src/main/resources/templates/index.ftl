@@ -2,6 +2,7 @@
 <#include "common/_newtopnav.ftl">
 <#include "common/_footwrapper.ftl">
 <#include "common/_bodywrapper.ftl">
+<#include "common/_backtop.ftl">
 <@head title="wj改变你的网站收藏夹"></@head>
 <@body>
     <@newtopnav></@newtopnav>
@@ -171,7 +172,10 @@
     </form>
     </@bodywrapper>
     <@footwrapper></@footwrapper>
+    <@backtop></@backtop>
 </@body>
 <@foot>
 <script type="text/javascript" src="/js/index.js"></script>
+<#-- 返回顶部js -->
+<script type="text/javascript" src="/js/gotop.js"></script>
 </@foot>
