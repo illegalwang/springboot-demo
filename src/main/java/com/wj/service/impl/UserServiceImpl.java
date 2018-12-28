@@ -57,4 +57,11 @@ public class UserServiceImpl implements UserService {
         webBean.setGroup(group);
         return webBean;
     }
+
+    @Override
+    public SysUser findByUsername(String username) {
+        SysUserExample example = new SysUserExample();
+        example.createCriteria().andUsernameEqualTo(username);
+        return userMapper.selectOneByExample(example);
+    }
 }

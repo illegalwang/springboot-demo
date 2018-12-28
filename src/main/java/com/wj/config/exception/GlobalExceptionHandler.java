@@ -1,4 +1,4 @@
-package com.wj.common;
+package com.wj.config.exception;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * *@ControllerAdvice 该注解定义异常处理类
  * *@ExceptionHandler 该注解声明异常处理方
  *
- * TODO 现在只有通用方法，待扩展
+ * TODO 现在只有通用异常方法，待扩展
  * Created by wj on 2018/12/25.
  */
 @ControllerAdvice

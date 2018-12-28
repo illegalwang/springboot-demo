@@ -15,7 +15,9 @@
 <body>
     <#nested >
 </body>
-<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/jquery/jquery-3.3.1.min.js"></script>
+<script src="/jquery/jquery.validate.min.js"></script>
+<script src="/jquery/messages_zh.min.js"></script>
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </#macro>
 <#macro foot>
