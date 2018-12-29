@@ -1,6 +1,7 @@
 package com.wj.config.shiro;
 
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
     @Bean
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilter(DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 配置拦截器 anon:代表url可匿名访问。authc:代表url必须认证通过才可以访问。
@@ -45,9 +46,21 @@ public class ShiroConfig {
     }
 
     @Bean
-    public SecurityManager securityManager() {
+    public DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(shiroRealm());
         return securityManager;
+    }
+
+    /**
+     * 启用shiro注解
+     * @param securityManager
+     * @return
+     */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+         AuthorizationAttributeSourceAdvisor aas = new AuthorizationAttributeSourceAdvisor();
+         aas.setSecurityManager(securityManager);
+         return aas;
     }
 }

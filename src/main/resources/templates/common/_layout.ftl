@@ -1,3 +1,8 @@
+<#include "_constants.ftl">
+<#include "_newtopnav.ftl">
+<#include "_footwrapper.ftl">
+<#include "_bodywrapper.ftl">
+<#include "_backtop.ftl">
 <#-- 通用模板 -->
 <#macro head title>
 <!DOCTYPE html>

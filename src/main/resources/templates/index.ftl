@@ -1,8 +1,4 @@
 <#include "common/_layout.ftl">
-<#include "common/_newtopnav.ftl">
-<#include "common/_footwrapper.ftl">
-<#include "common/_bodywrapper.ftl">
-<#include "common/_backtop.ftl">
 <@head title="wj改变你的网站收藏夹"></@head>
 <@body>
     <@newtopnav></@newtopnav>
@@ -12,11 +8,13 @@
         <strong>说明！</strong>
         在这里您可以记录您常用的网站，并对常用网站进行分类，添加描述。不要犹豫，开始使用吧！
     </div>
-    <div class="top-btn-div col-md-12">
-        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#groupModal">
-            创建栏目
-        </button>
-    </div>
+        <@shiro.user>
+        <div class="top-btn-div col-md-12">
+            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#groupModal">
+                创建栏目
+            </button>
+        </div>
+        </@shiro.user>
     <div class="row">
         <#if webBean??>
             <#list 1..webBean.theme as x>
@@ -34,7 +32,8 @@
                                     <#if web.children?? && (web.children?size>0)>
                                         <ul>
                                             <#list web.children as child>
-                                                <li <#if child?index gte 7>class="li-hidden" style="display: none;"</#if>><h5>
+                                                <li <#if child?index gte 7>class="li-hidden"
+                                                    style="display: none;"</#if>><h5>
                                                     <img src="${child.webIcon!""}"
                                                          onerror="src='/img/webgroup/earth_service.png'">
                                                     <a href="${child.webUrl}" target="_blank">${child.webName}</a>
@@ -56,11 +55,13 @@
                                         <#else>
                                             <span style="cursor: default;">&nbsp;</span>
                                         </#if>
+                                        <@shiro.user>
                                         <span class="pull-right">
-                                        <a href="javascript:void(0)" data-toggle="modal" data-target="#childModal"
-                                           onclick="getGroupId(${web.groupId})"><i class="glyphicon glyphicon-plus">&nbsp;</i></a>
-                                        <a href="javascript:void(0)"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    </span>
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#childModal"
+                                               onclick="getGroupId(${web.groupId})"><i class="glyphicon glyphicon-plus">&nbsp;</i></a>
+                                            <a href="javascript:void(0)"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        </span>
+                                        </@shiro.user>
                                     </div>
                                 </div>
                             </#if>

@@ -1,28 +1,4 @@
-package com.wj.config.shiro;//package com.wj.config.shiro;
-//
-//import com.jagregory.shiro.freemarker.ShiroTags;
-//import freemarker.template.Configuration;
-//import freemarker.template.TemplateException;
-//import org.springframework.stereotype.Component;
-//import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
-//
-//import java.io.IOException;
-//
-///**
-// * freemarker中使用shiro标签需要此配置
-// * Created by wj on 2018/12/28.
-// */
-//public class ShiroTagsFreemarkerConfigurer extends FreeMarkerConfigurer {
-//    @Override
-//    public void afterPropertiesSet() throws IOException, TemplateException {
-//        super.afterPropertiesSet();
-//        Configuration configuration = this.getConfiguration();
-//        configuration.setSharedVariable("shiro", new ShiroTags());
-//        //防止页面输出数字,变成2,000
-////        configuration.setNumberFormat("#");
-//    }
-//}
-
+package com.wj.config.shiro;
 
 import com.jagregory.shiro.freemarker.ShiroTags;
 import freemarker.template.Configuration;
