@@ -5,6 +5,7 @@ import com.wj.bean.model.IndexGroupChild;
 import com.wj.controller.BaseController;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class GroupChildController extends BaseController {
     private static final Log log = LogFactory.getLog(GroupChildController.class);
 
     @PostMapping()
+    @RequiresUser
     public ModelAndView addChild(IndexGroupChild groupChild) {
         ModelAndView mv = new ModelAndView("redirect:/");
         groupChildService.addChild(groupChild);

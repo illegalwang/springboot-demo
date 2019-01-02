@@ -1,5 +1,5 @@
 <#include "common/_layout.ftl">
-<@head title="wj改变你的网站收藏夹"></@head>
+<@head title="WJ改变你的网站收藏夹"></@head>
 <@body>
     <@newtopnav></@newtopnav>
     <@bodywrapper>
