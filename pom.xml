@@ -11,7 +11,7 @@
 	<groupId>com.wj</groupId>
 	<artifactId>springboot-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>springboot-demo</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -127,6 +127,12 @@
             <version>0.1</version>
         </dependency>
 
+        <!-- 不打war包时需要把scope，provided注释掉 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <!--<scope>provided</scope>-->
+        </dependency>
     </dependencies>
 
 	<build>

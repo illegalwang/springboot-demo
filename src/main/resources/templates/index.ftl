@@ -28,14 +28,14 @@
                                             <small>${web.littleTitle}</small>
                                         </#if>
                                     </h3>
-                                    <img src="${web.image!""}" onerror="src='/img/webgroup/itwjimg.jpg'">
+                                    <img src="${CXT}${web.image!""}" onerror="src='${CXT}/img/webgroup/itwjimg.jpg'">
                                     <#if web.children?? && (web.children?size>0)>
                                         <ul>
                                             <#list web.children as child>
                                                 <li <#if child?index gte 7>class="li-hidden"
                                                     style="display: none;"</#if>><h5>
                                                     <img src="${child.webIcon!""}"
-                                                         onerror="src='/img/webgroup/earth_service.png'">
+                                                         onerror="src='${CXT}/img/webgroup/earth_service.png'">
                                                     <a href="${child.webUrl}" target="_blank">${child.webName}</a>
                                                     <#if child.ifDes == 1>
                                                         <a class="omit text-muted pull-right" href="#"><i
@@ -176,7 +176,7 @@
     <@backtop></@backtop>
 </@body>
 <@foot>
-<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="${CXT}/js/index.js"></script>
 <#-- 返回顶部js -->
-<script type="text/javascript" src="/js/gotop.js"></script>
+<script type="text/javascript" src="${CXT}/js/gotop.js"></script>
 </@foot>

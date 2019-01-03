@@ -46,7 +46,7 @@
             </tbody>
         </table>
         <div class="text-center">
-            <img src="/img/index/logo2-lucency.png" alt="logo2"><br>
+            <img src="${CXT}/img/index/logo2-lucency.png" alt="logo2"><br>
             <span>${FOR_THE_RECORD!""}</span>
         </div>
     </div>

@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4 col-md-offset-4 text-center">
-            <img class="login-img" src="/img/index/logo2-lucency.png" alt="logo">
+            <img class="login-img" src="${CXT}/img/index/logo2-lucency.png" alt="logo">
         </div>
     </div>
     <div class="row">
@@ -57,5 +57,5 @@
 </div>
 </@body>
 <@foot>
-<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="${CXT}/js/login.js"></script>
 </@foot>

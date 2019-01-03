@@ -58,5 +58,6 @@ public class MD5 {
         System.out.println(md5("admin"));
         System.out.println(md5("123456"));
         System.out.println(nMd5("000000", "9314552ded3a4052947012f41a211733"));
+        System.out.println(nMd5("xinyue", "08cfa571f5df43ac82a4ecca6271d2cf"));
     }
 }

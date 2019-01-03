@@ -25,7 +25,7 @@ public class ShiroConfig {
 //        filterChainDefinitionMap.put("/static/**", "anon");
 //        filterChainDefinitionMap.put("/", "anon");
         // 由于顺序判断，一般/**放在最下边
-        filterChainDefinitionMap.put("/**", "anon");
+        filterChainDefinitionMap.put("/*", "anon");
         // 配置 退出过滤器，其中退出的具体代码shiro已经实现
         filterChainDefinitionMap.put("/logout", "logout");
         // 如果不设置会自动寻找Web工程根目录下的“/login.jsp”页面

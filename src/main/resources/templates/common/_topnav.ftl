@@ -7,7 +7,7 @@
             <a class="navbar-brand" href="#">
                 ITWJ
             </a>-->
-            <img src="/img/index/logo2.png" alt="logo2" style="width: 80px;height: 49px;">
+            <img src="${CXT}/img/index/logo2.png" alt="logo2" style="width: 80px;height: 49px;">
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
