@@ -4,7 +4,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4 col-md-offset-4 text-center">
-            <img class="login-img" src="${CXT}/img/index/logo2-lucency.png" alt="logo">
+            <a href="/" title="返回主页">
+                <img class="login-img" src="${CXT}/img/index/logo2-lucency.png" alt="logo">
+            </a>
         </div>
     </div>
     <div class="row">
@@ -25,7 +27,7 @@
                     <div class="form-group">
                         <div class="col-sm-12">
                             <input type="password" class="form-control" id="inputPassword" name="password"
-                                   placeholder="密码">
+                                   placeholder="‍密码">
                         </div>
                     </div>
                     <div class="form-group">
@@ -42,7 +44,7 @@
                     <div class="form-group">
                         <div class="col-sm-12">
                             <span class="pull-left"><a href="#">忘记密码？</a></span>
-                            <span class="pull-right"><a href="#">注册</a></span>
+                            <span class="pull-right"><a href="register">注册</a></span>
                         </div>
                     </div>
                 </form>

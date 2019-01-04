@@ -55,7 +55,7 @@ function getGroupId(groupId) {
  * */
 $(function () {
     $(".showMoreBtn").on('click', function () {
-        $(this).parents(".group-div").children(".group-child").children("ul").children(".li-hidden").slideToggle();
+        $(this).parents(".group-div").children(".group-child").children("ul").children(".li-hidden").slideToggle(200);
         $(this).children("i").attr("class", $(this).children("i").attr("class") == "glyphicon glyphicon-triangle-top" ?
             "glyphicon glyphicon-triangle-bottom" : "glyphicon glyphicon-triangle-top");
         $(this).children("span").toggle();

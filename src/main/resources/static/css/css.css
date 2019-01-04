@@ -38,13 +38,11 @@ body {
 .topnavspan {
     position: relative;
     margin-top: 2%;
-    margin-right: 2%;
+    width: 98px;
 }
 
 .topnavspan .dropdown-menu {
     position: relative;
-    top: 20px;
-    left: 166px;
 }
 
 /*页面中部div*/
@@ -248,4 +246,33 @@ body {
 
 .back-top > i {
     font-size: 30px;
+}
+
+/*注册页面样式*/
+.register-page {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.register-page > .row {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.register-page > .row div {
+    height: 100%;
+}
+
+.register-page > .row .carousel-inner img {
+    height: 100%;
+}
+
+.register-page > .row > .col-md-4 {
+    padding: 0px;
+}
+
+.register-page form span {
+    background-color: white;
 }

@@ -23,6 +23,7 @@
 <script src="${CXT}/jquery/jquery-3.3.1.min.js"></script>
 <script src="${CXT}/jquery/jquery.validate.min.js"></script>
 <script src="${CXT}/jquery/messages_zh.js"></script>
+<script src="${CXT}/js/newtopnav.js"></script>
 <script src="${CXT}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </#macro>
 <#macro foot>

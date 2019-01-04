@@ -3,11 +3,11 @@
 <@body>
     <@newtopnav></@newtopnav>
     <@bodywrapper>
-    <div class="alert alert-warning">
+    <#--<div class="alert alert-warning">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>说明！</strong>
         在这里您可以记录您常用的网站，并对常用网站进行分类，添加描述。不要犹豫，开始使用吧！
-    </div>
+    </div>-->
         <@shiro.user>
         <div class="top-btn-div col-md-12">
             <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#groupModal">
@@ -57,9 +57,9 @@
                                         </#if>
                                         <@shiro.user>
                                         <span class="pull-right">
-                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#childModal"
+                                            <a href="javascript:void(0)" data-toggle="modal" title="添加条目" data-target="#childModal"
                                                onclick="getGroupId(${web.groupId})"><i class="glyphicon glyphicon-plus">&nbsp;</i></a>
-                                            <a href="javascript:void(0)"><i class="glyphicon glyphicon-pencil"></i></a>
+                                            <a href="javascript:void(0)" title="编辑"><i class="glyphicon glyphicon-pencil"></i></a>
                                         </span>
                                         </@shiro.user>
                                     </div>
@@ -136,7 +136,7 @@
         </div>
     </form>
 
-    <#-- 添加栏目项modal -->
+    <#-- 添加条目modal -->
     <form class="form-horizontal" id="childForm" action="group/child" method="post">
         <div class="modal fade" id="childModal" tabindex="-1" role="dialog" aria-labelledby="childModalLabel">
             <div class="modal-dialog" role="document">
@@ -144,7 +144,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">添加栏目项</h4>
+                        <h4 class="modal-title" id="myModalLabel">添加条目</h4>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" id="inputGroupId" name="groupId">

@@ -106,6 +106,15 @@ public class SystemController extends BaseController {
     }
 
     /**
+     * 去注册页面
+     * @return
+     */
+    @GetMapping("register")
+    public String toRegister() {
+        return "system/register";
+    }
+
+    /**
      * TODO 测试
      * @return
      */
