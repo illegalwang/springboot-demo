@@ -7,8 +7,8 @@ $(function () {
             password: "required"
         },
         messages: {
-            username: "用户名不能为空",
-            password: "密码不能为空"
+            username: "请输入用户名",
+            password: "请输入密码"
         }
     });
 });

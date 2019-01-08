@@ -25,8 +25,23 @@ public class UUIDUtil {
         return System.currentTimeMillis() + getUUID().substring(13);
     }
 
+    /**
+     * 创建一个6位数验证码
+     * @return
+     */
+    public static String createAuthCode() {
+        StringBuilder authCode = new StringBuilder();
+        int random = (int)(Math.random()*31);
+        for (int i = 0; i < 6; i++) {
+            String code = getUUID();
+            authCode.append(getUUID().substring(random, random+1));
+        }
+        return authCode.toString();
+    }
+
     public static void main(String[] args) {
-        System.out.println(getUUID());
-        System.out.println(getTimeUUID());
+//        System.out.println(getUUID());
+//        System.out.println(getTimeUUID());
+        System.out.println(createAuthCode());
     }
 }

@@ -29,7 +29,7 @@
             </div>
             <div class="row" style="height: auto!important;">
                 <div class="col-md-10 col-md-offset-2">
-                    <form class="form-horizontal" action="">
+                    <form class="form-horizontal" id="registerForm" action="register/register" method="POST">
                         <div class="form-group" style="margin-bottom: 50px;">
                             <h1 class="col-md-12">欢迎注册IT模块<br>
                                 <small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -38,56 +38,72 @@
                             </h1>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-md-2 control-label">用户名</label>
+                            <label for="inputUsername" class="col-md-2 control-label">用户名</label>
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <input type="text" class="form-control input-lg" placeholder="用户名">
+                                    <input type="text" class="form-control input-lg" id="inputUsername" name="username" placeholder="用户名">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-md-2 control-label">密码</label>
+                            <label class="col-md-7 col-md-offset-2 error" id="inputUsername-error" for="inputUsername"></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-md-2 control-label">密码</label>
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <input type="password" class="form-control input-lg" placeholder="密码">
+                                    <input type="password" class="form-control input-lg" id="inputPassword" name="password" placeholder="密码">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-md-2 control-label">确认密码</label>
+                            <label class="col-md-7 col-md-offset-2 error" id="inputPassword-error" for="inputPassword"></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCheckPass" class="col-md-2 control-label">确认密码</label>
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <input type="password" class="form-control input-lg" placeholder="确认密码">
+                                    <input type="password" class="form-control input-lg" id="inputCheckPass" name="checkPass" placeholder="确认密码">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-ok-sign"></i></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-md-2 control-label">邮箱</label>
+                            <label class="col-md-7 col-md-offset-2 error" id="inputCheckPass-error" for="inputCheckPass"></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-md-2 control-label">邮箱</label>
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <input type="email" class="form-control input-lg" placeholder="电子邮箱">
+                                    <input type="text" class="form-control input-lg" id="inputEmail" name="email" placeholder="电子邮箱">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-7 col-md-offset-2 error" id="inputEmail-error" for="inputEmail"></label>
+                        </div>
+                        <div class="form-group">
                             <div class="col-md-7 col-md-offset-2">
-                                <button class="btn btn-default" type="button">
-                                    点击邮箱获取验证码
+                                <button class="btn btn-default" type="button" id="buttonAuthCode">
+                                    点击获取邮箱验证码
                                 </button>
+                                <input type="hidden" id="inputCurrentAuthCode" name="currentAuthCode">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-md-2 control-label">邮箱验证码</label>
+                            <label for="inputAuthCode" class="col-md-2 control-label">邮箱验证码</label>
                             <div class="col-md-7">
                                 <div class="input-group">
-                                    <input type="email" class="form-control input-lg" placeholder="验证码">
+                                    <input type="text" class="form-control input-lg" id="inputAuthCode" name="authCode" placeholder="验证码">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-send"></i></span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-7 col-md-offset-2 error" id="inputAuthCode-error" for="inputAuthCode"></label>
                         </div>
                         <div class="form-group">
                             <div class="col-md-7 col-md-offset-2">
@@ -112,5 +128,5 @@
 <@useragreement></@useragreement>
 </@body>
 <@foot>
-<script type="text/javascript" src="${CXT}/js/login.js"></script>
+<script type="text/javascript" src="${CXT}/js/register.js"></script>
 </@foot>
