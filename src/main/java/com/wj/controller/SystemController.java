@@ -30,7 +30,7 @@ public class SystemController extends BaseController {
      * 未登录访问主页
      * @return
      */
-    @GetMapping("/")
+    @GetMapping({"/", "index"})
     public ModelAndView index() {
         log.info("****去主页*******************************************************************");
         ModelAndView mv = new ModelAndView("index");

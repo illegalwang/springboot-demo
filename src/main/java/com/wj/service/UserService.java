@@ -20,4 +20,11 @@ public interface UserService {
      * @return
      */
     SysUser findByUsername(String username);
+
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
+    int addUser(SysUser user);
 }

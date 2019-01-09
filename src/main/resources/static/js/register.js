@@ -73,7 +73,8 @@ $(function() {
                 required: "验证码不能为空",
                 equalTo: "验证码错误"
             }
-        }
+        },
+        onkeyup: false
     });
 });
 
@@ -104,7 +105,7 @@ function countDown() {
         $("#buttonAuthCode").attr("disabled", false);
         $("#buttonAuthCode").html("点击获取邮箱验证码");
         // 重置验证码
-        // $("#inputCurrentAuthCode").val("");
+        $("#inputCurrentAuthCode").val("");
         countDownNum = 180;
         return;
     } else {

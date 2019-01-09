@@ -29,7 +29,7 @@
             </div>
             <div class="row" style="height: auto!important;">
                 <div class="col-md-10 col-md-offset-2">
-                    <form class="form-horizontal" id="registerForm" action="register/register" method="POST">
+                    <form class="form-horizontal" id="registerForm" action="register" method="POST">
                         <div class="form-group" style="margin-bottom: 50px;">
                             <h1 class="col-md-12">欢迎注册IT模块<br>
                                 <small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

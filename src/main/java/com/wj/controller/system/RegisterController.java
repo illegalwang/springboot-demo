@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
+ * 注册
  * Created by wj on 2019/1/7.
  */
 @Controller
@@ -43,7 +44,10 @@ public class RegisterController {
     @PostMapping("register")
     public ModelAndView register(SysUser user) {
         ModelAndView mv = new ModelAndView();
-
+        int i = userService.addUser(user);
+        if (i > 0) {
+            mv.setViewName("system/success");
+        }
         return mv;
     }
 
@@ -72,5 +76,14 @@ public class RegisterController {
     public String emailAuthCode(String email) {
         String authCode = registerService.creatAuthCode(email);
         return authCode;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("success")
+    public String success(String email) {
+        return "system/success";
     }
 }

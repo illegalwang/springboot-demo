@@ -5,7 +5,8 @@
         <@shiro.user>
         <span class="topnavspan pull-right">
             <a href="javascript:void(0)" id="loginInfoBtn">
-                <i class="glyphicon glyphicon-user"></i>&nbsp;<@shiro.principal property="trueName"/>
+                <i class="glyphicon glyphicon-user"></i>&nbsp;
+                <@shiro.principal property="trueName"/>!"新用户"
             </a>
             <ul class="dropdown-menu" id="loginInfo">
                 <li><a href="#">个人信息</a></li>

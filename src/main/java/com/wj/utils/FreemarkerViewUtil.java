@@ -2,6 +2,8 @@ package com.wj.utils;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,8 +39,9 @@ public class FreemarkerViewUtil {
             out = new FileWriter(new File("D:\\test.html"));
             // 设置参数
             Map<String, String> map = new HashMap<>();
-            map.put("name", "王先森");
-            map.put("message", "welcome to freemarker");
+            map.put("captcha", "123456789");
+            // 解析模板为字符串
+//            String content = FreeMarkerTemplateUtils.processTemplateIntoString(template, map);
             // 输出
             template.process(map, out);
         } catch (Exception e) {
@@ -50,6 +53,23 @@ public class FreemarkerViewUtil {
                 e.printStackTrace();
             }
         }
+    }
 
+    /**
+     * 解析ftl模板为字符串
+     * @param map
+     * @param <T>
+     * @return
+     * @throws IOException
+     * @throws TemplateException
+     */
+    public static <T> String processTemplateToString(Map<String, T> map, String path) throws IOException, TemplateException {
+        Configuration configuration = new Configuration(Configuration.getVersion());
+        configuration.setDefaultEncoding("UTF-8");
+        configuration.setDirectoryForTemplateLoading(new File(TEMPLATE_PATH));
+        Template template = configuration.getTemplate(path);
+        // 解析模板为字符串
+        String content = FreeMarkerTemplateUtils.processTemplateIntoString(template, map);
+        return content;
     }
 }

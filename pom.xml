@@ -127,11 +127,17 @@
             <version>0.1</version>
         </dependency>
 
-        <!-- 不打war包时需要把scope，provided注释掉 -->
+        <!-- 打war包时需要把scope，provided注释去掉 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <!--<scope>provided</scope>-->
+        </dependency>
+
+        <!-- 发送邮件 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
     </dependencies>
 

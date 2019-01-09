@@ -9,6 +9,8 @@ import com.wj.dao.GroupChildMapper;
 import com.wj.dao.UserMapper;
 import com.wj.dao.WebGroupMapper;
 import com.wj.service.UserService;
+import com.wj.utils.MD5;
+import com.wj.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,5 +65,14 @@ public class UserServiceImpl implements UserService {
         SysUserExample example = new SysUserExample();
         example.createCriteria().andUsernameEqualTo(username);
         return userMapper.selectOneByExample(example);
+    }
+
+    @Override
+    public int addUser(SysUser user) {
+        String userId = UUIDUtil.getUUID();
+        String password = MD5.nMd5(user.getPassword(), userId);
+        user.setUserId(userId);
+        user.setPassword(password);
+        return userMapper.insertSelective(user);
     }
 }
