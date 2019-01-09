@@ -37,12 +37,12 @@ public class RegisterController {
     }
 
     /**
-     * TODO 注册
+     * 注册
      * @param user
      * @return
      */
     @PostMapping("register")
-    public ModelAndView register(SysUser user) {
+    public ModelAndView register(SysUser user) throws InterruptedException {
         ModelAndView mv = new ModelAndView();
         int i = userService.addUser(user);
         if (i > 0) {
@@ -79,7 +79,7 @@ public class RegisterController {
     }
 
     /**
-     *
+     * 注册成功跳转
      * @return
      */
     @RequestMapping("success")

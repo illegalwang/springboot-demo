@@ -30,9 +30,13 @@
                                    placeholder="‍密码">
                         </div>
                     </div>
+                    <label class="pull-left error" id="inputPassword-error" for="inputPassword">${message!""}</label>
                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <label class="pull-left error" id="inputPassword-error" for="inputPassword">${message!""}</label>
+                        <div class="col-md-12">
+                            <label for="inputRememberMe" class="col-md-4 checkbox" style="cursor: pointer;">
+                                <input type="checkbox" name="rememberMe" id="inputRememberMe">
+                                <span class="text-muted" style="font-weight: normal;">记住我</span>
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">

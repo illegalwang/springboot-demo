@@ -1,6 +1,9 @@
 package com.wj.bean.model;
 
-public class SysUser {
+import java.io.Serializable;
+
+public class SysUser implements Serializable{
+
     private String userId;
 
     private String username;

@@ -65,6 +65,7 @@ public class SystemController extends BaseController {
     @PostMapping("login")
     public ModelAndView login(String username,
                               String password,
+                              @RequestParam(value = "rememberMe", required = false, defaultValue = "false") Boolean rememberMe,
                               RedirectAttributes redirectAttributes) {
         ModelAndView mv =  new ModelAndView("redirect:/");
         if (StringUtil.isBlank(username) || StringUtil.isBlank(password)) {
@@ -75,7 +76,8 @@ public class SystemController extends BaseController {
         // 相当于获取当前用户
         Subject subject = SecurityUtils.getSubject();
         // 创建一个用户名/密码的身份验证token
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password, "shiroRealm");
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
+//        token.setRememberMe(rememberMe);
 
         try {
             subject.login(token);

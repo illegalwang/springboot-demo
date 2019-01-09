@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
         String password = MD5.nMd5(user.getPassword(), userId);
         user.setUserId(userId);
         user.setPassword(password);
+        user.setTrueName("用户" + UUIDUtil.createAuthCode());
         return userMapper.insertSelective(user);
     }
 }

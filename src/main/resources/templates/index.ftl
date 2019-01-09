@@ -55,13 +55,15 @@
                                         <#else>
                                             <span style="cursor: default;">&nbsp;</span>
                                         </#if>
-                                        <@shiro.user>
                                         <span class="pull-right">
+                                        <@shiro.user><#-- 这个标签表示登录和记住我的用户都可以访问 -->
                                             <a href="javascript:void(0)" data-toggle="modal" title="添加条目" data-target="#childModal"
                                                onclick="getGroupId(${web.groupId})"><i class="glyphicon glyphicon-plus">&nbsp;</i></a>
-                                            <a href="javascript:void(0)" title="编辑"><i class="glyphicon glyphicon-pencil"></i></a>
-                                        </span>
                                         </@shiro.user>
+                                        <@shiro.authenticated><#-- 这个标签表示只有登录的用户才能访问，排除记住我 -->
+                                            <a href="javascript:void(0)" title="编辑"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        </@shiro.authenticated>
+                                        </span>
                                     </div>
                                 </div>
                             </#if>
