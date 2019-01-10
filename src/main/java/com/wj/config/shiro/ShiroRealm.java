@@ -54,8 +54,6 @@ public class ShiroRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         // 获取用户的输入的账号
         String username = (String) token.getPrincipal();
-        System.out.println("****token.getCredentials : " + token.getCredentials());
-        System.out.println("****token.getPrincipal : " + token.getPrincipal());
         // 通过username在数据库中查找User对象，进行判断
         // TODO 这块可以做缓存，不做的话，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法。
         SysUser user = userService.findByUsername(username);

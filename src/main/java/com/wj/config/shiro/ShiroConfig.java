@@ -1,15 +1,19 @@
 package com.wj.config.shiro;
 
 import org.apache.shiro.codec.Base64;
+import org.apache.shiro.session.SessionListener;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -19,6 +23,11 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+    /**
+     * 配置过滤器
+     * @param securityManager
+     * @return
+     */
     @Bean
     public ShiroFilterFactoryBean shiroFilter(DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -26,7 +35,7 @@ public class ShiroConfig {
         // 配置拦截器 anon:代表url可匿名访问。authc:代表url必须认证通过才可以访问。
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 配置 不会被拦截的链接，顺序判断
-//        filterChainDefinitionMap.put("/static/**", "anon");
+//        filterChainDefinitionMap.put("/img/**", "anon");
 //        filterChainDefinitionMap.put("/", "anon");
         // 由于顺序判断，一般/**放在最下边
         filterChainDefinitionMap.put("/**", "anon");
@@ -48,6 +57,10 @@ public class ShiroConfig {
         return shiroRealm;
     }
 
+    /**
+     * 安全管理器
+     * @return
+     */
     @Bean
     public DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -55,6 +68,8 @@ public class ShiroConfig {
         securityManager.setRealm(shiroRealm());
         // 注入记住我管理
         securityManager.setRememberMeManager(rememberMeManager());
+        // 注入会话管理
+        securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
 
@@ -71,6 +86,52 @@ public class ShiroConfig {
     }
 
     /**
+     * 会话管理
+     * @return
+     */
+    @Bean
+    public SessionManager sessionManager() {
+        // 可以代替ServletContainerSessionManager(DefaultWebSecurityManager使用的默认实现),
+        // 废弃了servlet容器的会话管理，自己维护会话。
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        Collection<SessionListener> listeners = new ArrayList<>();
+        // 注入session监听器
+        sessionManager.setSessionListeners(listeners);
+        // session过期时间，毫秒为单位
+        listeners.add(sessionListener());
+        sessionManager.setGlobalSessionTimeout(1000*60);
+        // 是否删除过期Session
+        sessionManager.setDeleteInvalidSessions(true);
+        sessionManager.setSessionIdCookie(rememberMeCookie());
+        // 去掉url后面jsessionid
+        sessionManager.setSessionIdUrlRewritingEnabled(false);
+        return sessionManager;
+    }
+
+    /**
+     * session监听器
+     * @return
+     */
+    @Bean
+    public MySessionListener sessionListener() {
+        MySessionListener sessionListener = new MySessionListener();
+        return sessionListener;
+    }
+
+    /**
+     * 密码管理,在realm已经配置
+     * @return
+     */
+    /*@Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        credentialsMatcher.setHashAlgorithmName("MD5"); //散列算法使用md5
+        credentialsMatcher.setHashIterations(1024);        //散列次数，1024表示md5加密1024次
+//        credentialsMatcher.setStoredCredentialsHexEncoded(true);//启用十六进制存储
+        return credentialsMatcher;
+    }*/
+
+    /**
      * 设置记住我的cookie
      * @return
      */
@@ -84,7 +145,7 @@ public class ShiroConfig {
     }
 
     /**
-     * cookie管理对象
+     * cookie管理器
      * @return
      */
     @Bean
