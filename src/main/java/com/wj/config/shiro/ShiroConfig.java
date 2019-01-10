@@ -99,10 +99,15 @@ public class ShiroConfig {
         sessionManager.setSessionListeners(listeners);
         // session过期时间，毫秒为单位
         listeners.add(sessionListener());
-        sessionManager.setGlobalSessionTimeout(1000*60);
-        // 是否删除过期Session
+        sessionManager.setSessionIdCookie(sessionIdCookie());
+        sessionManager.setGlobalSessionTimeout(1000*60*30);
+        // 是否开启删除无效的session对象，默认为true
         sessionManager.setDeleteInvalidSessions(true);
-        sessionManager.setSessionIdCookie(rememberMeCookie());
+        // 是否开启定时调度器，进行检测过期session，默认为true
+        sessionManager.setSessionValidationSchedulerEnabled(true);
+        // 设置session失效的扫描时间，清理用户直接关闭浏览器造成的孤立会话，默认未1个小时
+        // 设置该属性，就不需要设置ExecutorServiceSessionValidationScheduler 底层也是默认自动调用ExecutorServiceSessionValidationScheduler
+        sessionManager.setSessionValidationInterval(1000*60*60);
         // 去掉url后面jsessionid
         sessionManager.setSessionIdUrlRewritingEnabled(false);
         return sessionManager;
@@ -132,6 +137,26 @@ public class ShiroConfig {
     }*/
 
     /**
+     * 保存sessionId的cookie
+     * 注意：这里的cookie不是记住我的cookie，记住我需要一个cookie session管理也需要自己的cookie
+     * @return
+     */
+    @Bean
+    public SimpleCookie sessionIdCookie() {
+        // Cookie的名称
+        SimpleCookie simpleCookie = new SimpleCookie("sessionId");
+        //setcookie的httponly属性如果设为true的话，会增加对xss防护的安全系数。它有以下特点：
+        //setcookie()的第七个参数
+        //设为true后，只能通过http访问，javascript无法访问
+        //防止xss读取cookie
+        simpleCookie.setHttpOnly(true);
+        simpleCookie.setPath("/");
+        // maxAge=-1表示浏览器关闭时，失效此cookie
+        simpleCookie.setMaxAge(-1);
+        return simpleCookie;
+    }
+
+    /**
      * 设置记住我的cookie
      * @return
      */
@@ -145,7 +170,7 @@ public class ShiroConfig {
     }
 
     /**
-     * cookie管理器
+     * 记住我的cookie管理器
      * @return
      */
     @Bean
