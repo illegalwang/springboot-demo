@@ -1,8 +1,13 @@
 package com.wj.config.shiro;
 
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
+import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
+import org.apache.shiro.session.mgt.eis.SessionIdGenerator;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
@@ -70,6 +75,8 @@ public class ShiroConfig {
         securityManager.setRememberMeManager(rememberMeManager());
         // 注入会话管理
         securityManager.setSessionManager(sessionManager());
+        // 注入缓存管理
+        securityManager.setCacheManager(ehCacheManager());
         return securityManager;
     }
 
@@ -97,9 +104,13 @@ public class ShiroConfig {
         Collection<SessionListener> listeners = new ArrayList<>();
         // 注入session监听器
         sessionManager.setSessionListeners(listeners);
-        // session过期时间，毫秒为单位
         listeners.add(sessionListener());
         sessionManager.setSessionIdCookie(sessionIdCookie());
+        // 注入sessionDAO
+        sessionManager.setSessionDAO(sessionDAO());
+        // 注入缓存管理
+        sessionManager.setCacheManager(ehCacheManager());
+        // session过期时间，毫秒为单位
         sessionManager.setGlobalSessionTimeout(1000*60*30);
         // 是否开启删除无效的session对象，默认为true
         sessionManager.setDeleteInvalidSessions(true);
@@ -124,14 +135,52 @@ public class ShiroConfig {
     }
 
     /**
-     * 密码管理,在realm已经配置
+     * 缓存管理
+     * @return
+     */
+    @Bean
+    public EhCacheManager ehCacheManager() {
+        EhCacheManager ehCacheManager = new EhCacheManager();
+        ehCacheManager.setCacheManagerConfigFile("classpath:config/shiro-ehcache.xml");
+        return ehCacheManager;
+    }
+
+    /**
+     * 配置会话ID生成器
+     * @return
+     */
+    @Bean
+    public SessionIdGenerator sessionIdGenerator() {
+        return new JavaUuidSessionIdGenerator();
+    }
+
+    /**
+     * 配置sessionDAO,作用是为session提供CRUD并进行持久化的一个shiro组件
+     * MemorySessionDAO直接在内存中进行会话维护
+     * EnterpriseCacheSessionDAO提供了缓存功能的会话维护，默认情况下使用MapCache实现，内部使用ConcurrentHashMap保存缓存的会话
+     * @return
+     */
+    @Bean
+    public SessionDAO sessionDAO() {
+        EnterpriseCacheSessionDAO enterpriseCacheSessionDAO = new EnterpriseCacheSessionDAO();
+        // 使用EhCacheManager
+        enterpriseCacheSessionDAO.setCacheManager(ehCacheManager());
+        // 设置Session缓存的名字，默认为shiro-activeSessionCache
+        enterpriseCacheSessionDAO.setActiveSessionsCacheName("shiro-activeSessionCache");
+        // 设置id生成器
+        enterpriseCacheSessionDAO.setSessionIdGenerator(sessionIdGenerator());
+        return enterpriseCacheSessionDAO;
+    }
+
+    /**
+     * 密码管理,在realm已经配置,所以这里的就给注掉了
      * @return
      */
     /*@Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
         credentialsMatcher.setHashAlgorithmName("MD5"); //散列算法使用md5
-        credentialsMatcher.setHashIterations(1024);        //散列次数，1024表示md5加密1024次
+        credentialsMatcher.setHashIterations(1024); //散列次数，1024表示md5加密1024次
 //        credentialsMatcher.setStoredCredentialsHexEncoded(true);//启用十六进制存储
         return credentialsMatcher;
     }*/
