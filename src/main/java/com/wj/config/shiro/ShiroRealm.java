@@ -87,4 +87,53 @@ public class ShiroRealm extends AuthorizingRealm {
         matcher.setHashIterations(1024);
         setCredentialsMatcher(matcher);
     }
+
+    /**
+     * 清除当前用户的授权缓存
+     * @param principals
+     */
+    @Override
+    public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthorizationInfo(principals);
+    }
+
+    /**
+     * 清除当前用户的认证缓存
+     * @param principals
+     */
+    @Override
+    public void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthenticationInfo(principals);
+    }
+
+    /**
+     * 清除当前用户缓存
+     * @param principals
+     */
+    @Override
+    public void clearCache(PrincipalCollection principals) {
+        super.clearCache(principals);
+    }
+
+    /**
+     * 清除所有授权缓存
+     */
+    public void clearAllCacheAuthorizationInfo() {
+        getAuthorizationCache().clear();
+    }
+
+    /**
+     * 清除所有认证缓存
+     */
+    public void clearAllCacheAuthenticationInfo() {
+        getAuthenticationCache().clear();
+    }
+
+    /**
+     * 清除所有授权和认证缓存
+     */
+    public void clearAllCache() {
+        clearAllCacheAuthorizationInfo();
+        clearAllCacheAuthenticationInfo();
+    }
 }

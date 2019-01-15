@@ -4,6 +4,7 @@ import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.session.mgt.SessionValidationScheduler;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -14,6 +15,7 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,6 +30,16 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+
+    @Value("${shiro.session-past-timeout}")
+    private Long sessionPastTimeout;
+
+    @Value("${shiro.session-lose-timeout}")
+    private Long sessionLoseTimeout;
+
+    @Value("${shiro.rememberMeCookie-save-timeout}")
+    private int cookieSaveTimeout;
+
     /**
      * 配置过滤器
      * @param securityManager
@@ -38,6 +50,7 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 配置拦截器 anon:代表url可匿名访问。authc:代表url必须认证通过才可以访问。
+        // 这个map可以抽象出来，从数据库查询权限配置动态配置
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // 配置 不会被拦截的链接，顺序判断
 //        filterChainDefinitionMap.put("/img/**", "anon");
@@ -56,9 +69,23 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
+    /**
+     * 配置shiroRealm（自己写的），并开启缓存功能
+     * @return
+     */
     @Bean
     public ShiroRealm shiroRealm() {
         ShiroRealm shiroRealm = new ShiroRealm();
+        // 开启缓存
+        shiroRealm.setCachingEnabled(true);
+        // 启用身份验证缓存，即缓存AuthenticationInfo信息，默认false
+        shiroRealm.setAuthenticationCachingEnabled(true);
+        // 缓存AuthenticationInfo信息的缓存名称，在shiro-ehcache.xml中有对应缓存的配置
+        shiroRealm.setAuthenticationCacheName("authenctionCache");
+        // 启用授权缓存，即缓存AuthorizationInfo信息，默认false
+        shiroRealm.setAuthorizationCachingEnabled(true);
+        // 缓存AuthorizationInfo信息的缓存名称，在shiro-ehcache.xml中有对应缓存的配置
+        shiroRealm.setAuthorizationCacheName("authorizationCache");
         return shiroRealm;
     }
 
@@ -81,7 +108,7 @@ public class ShiroConfig {
     }
 
     /**
-     * 启用shiro注解，控制权限
+     * 启用shiro注解，可以在方法上加注解来控制权限
      * @param securityManager
      * @return
      */
@@ -111,14 +138,14 @@ public class ShiroConfig {
         // 注入缓存管理
         sessionManager.setCacheManager(ehCacheManager());
         // session过期时间，毫秒为单位
-        sessionManager.setGlobalSessionTimeout(1000*60*30);
+        sessionManager.setGlobalSessionTimeout(sessionPastTimeout);
         // 是否开启删除无效的session对象，默认为true
         sessionManager.setDeleteInvalidSessions(true);
         // 是否开启定时调度器，进行检测过期session，默认为true
         sessionManager.setSessionValidationSchedulerEnabled(true);
-        // 设置session失效的扫描时间，清理用户直接关闭浏览器造成的孤立会话，默认未1个小时
+        // 设置失效session的扫描时间，清理用户直接关闭浏览器造成的孤立会话，默认为1个小时
         // 设置该属性，就不需要设置ExecutorServiceSessionValidationScheduler 底层也是默认自动调用ExecutorServiceSessionValidationScheduler
-        sessionManager.setSessionValidationInterval(1000*60*60);
+        sessionManager.setSessionValidationInterval(sessionLoseTimeout);
         // 去掉url后面jsessionid
         sessionManager.setSessionIdUrlRewritingEnabled(false);
         return sessionManager;
@@ -173,19 +200,6 @@ public class ShiroConfig {
     }
 
     /**
-     * 密码管理,在realm已经配置,所以这里的就给注掉了
-     * @return
-     */
-    /*@Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
-        credentialsMatcher.setHashAlgorithmName("MD5"); //散列算法使用md5
-        credentialsMatcher.setHashIterations(1024); //散列次数，1024表示md5加密1024次
-//        credentialsMatcher.setStoredCredentialsHexEncoded(true);//启用十六进制存储
-        return credentialsMatcher;
-    }*/
-
-    /**
      * 保存sessionId的cookie
      * 注意：这里的cookie不是记住我的cookie，记住我需要一个cookie session管理也需要自己的cookie
      * @return
@@ -214,7 +228,7 @@ public class ShiroConfig {
         // 这个设置cookie的名称，对应前端checkbox的name
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         // 设置Cookie有效时间，以秒为单位
-        simpleCookie.setMaxAge(60*60);
+        simpleCookie.setMaxAge(cookieSaveTimeout);
         return simpleCookie;
     }
 
@@ -230,4 +244,17 @@ public class ShiroConfig {
         rememberMeManager.setCipherKey(Base64.decode("2AvVhdsgUs0FSA3SDFAdag=="));
         return rememberMeManager;
     }
+
+    /**
+     * 密码管理,在realm已经配置,所以这里的就给注掉了
+     * @return
+     */
+    /*@Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        credentialsMatcher.setHashAlgorithmName("MD5"); //散列算法使用md5
+        credentialsMatcher.setHashIterations(1024); //散列次数，1024表示md5加密1024次
+//        credentialsMatcher.setStoredCredentialsHexEncoded(true);//启用十六进制存储
+        return credentialsMatcher;
+    }*/
 }

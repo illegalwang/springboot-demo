@@ -120,6 +120,12 @@
             <version>1.3.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
         <!-- 使用shiro的freemarker标签 -->
         <dependency>
             <groupId>net.mingsoft</groupId>
