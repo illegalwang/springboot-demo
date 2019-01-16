@@ -79,14 +79,14 @@ public class ShiroRealm extends AuthorizingRealm {
      * 被@PreDestroy修饰的方法会在服务器卸载Servlet的时候运行，并且只会被服务器调用一次，类似于Servlet的destroy()方法。
      * 被@PreDestroy修饰的方法会在destroy()方法之后运行，在Servlet被彻底卸载之前。（详见下面的程序实践）
      */
-    @PostConstruct
+    /*@PostConstruct
     public void initCredentialsMatcher() {
         // 创建凭证匹配其，设置加密方式
         HashedCredentialsMatcher matcher = new HashedCredentialsMatcher("MD5");
         // 加密次数
         matcher.setHashIterations(1024);
         setCredentialsMatcher(matcher);
-    }
+    }*/
 
     /**
      * 清除当前用户的授权缓存

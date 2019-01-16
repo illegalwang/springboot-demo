@@ -1,10 +1,10 @@
 package com.wj.config.shiro;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.SessionManager;
-import org.apache.shiro.session.mgt.SessionValidationScheduler;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -49,6 +50,11 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
+        // 自定义拦截器，限制并发人数
+        Map<String, Filter> filtersMap = new LinkedHashMap<>();
+        // 限制同一账号同时在线的个数
+        filtersMap.put("kickout", kickoutSessionControlFilter());
+        shiroFilterFactoryBean.setFilters(filtersMap);
         // 配置拦截器 anon:代表url可匿名访问。authc:代表url必须认证通过才可以访问。
         // 这个map可以抽象出来，从数据库查询权限配置动态配置
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
@@ -56,7 +62,7 @@ public class ShiroConfig {
 //        filterChainDefinitionMap.put("/img/**", "anon");
 //        filterChainDefinitionMap.put("/", "anon");
         // 由于顺序判断，一般/**放在最下边
-        filterChainDefinitionMap.put("/**", "anon");
+        filterChainDefinitionMap.put("/**", "kickout,anon");
         // 配置 退出过滤器，其中退出的具体代码shiro已经实现
         filterChainDefinitionMap.put("/logout", "logout");
         // 如果不设置会自动寻找Web工程根目录下的“/login.jsp”页面
@@ -86,6 +92,8 @@ public class ShiroConfig {
         shiroRealm.setAuthorizationCachingEnabled(true);
         // 缓存AuthorizationInfo信息的缓存名称，在shiro-ehcache.xml中有对应缓存的配置
         shiroRealm.setAuthorizationCacheName("authorizationCache");
+        // 配置自定义密码比较器
+        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return shiroRealm;
     }
 
@@ -246,15 +254,35 @@ public class ShiroConfig {
     }
 
     /**
+     * 控制并发登录人数
+     * @return
+     */
+    @Bean
+    public KickoutSessionControlFilter kickoutSessionControlFilter() {
+        KickoutSessionControlFilter kickoutSessionControlFilter = new KickoutSessionControlFilter();
+        // 用于根据会话id，获取会话进行踢出操作。
+        kickoutSessionControlFilter.setSessionManager(sessionManager());
+        // 使用cacheManager获取相应的cache来缓存用户登录的会话；用于保存用户-会话之间的关系。
+        kickoutSessionControlFilter.setCacheManager(ehCacheManager());
+        // 是否踢出后来登录的，默认是false，
+        kickoutSessionControlFilter.setKickoutAfter(false);
+        // 同一账号最大会话数
+        kickoutSessionControlFilter.setMaxSession(1);
+        // 被踢后重定向的地址
+        kickoutSessionControlFilter.setKickoutUrl("/login/kickout");
+        return kickoutSessionControlFilter;
+    }
+
+    /**
      * 密码管理,在realm已经配置,所以这里的就给注掉了
      * @return
      */
-    /*@Bean
+    @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
         credentialsMatcher.setHashAlgorithmName("MD5"); //散列算法使用md5
         credentialsMatcher.setHashIterations(1024); //散列次数，1024表示md5加密1024次
-//        credentialsMatcher.setStoredCredentialsHexEncoded(true);//启用十六进制存储
+        credentialsMatcher.setStoredCredentialsHexEncoded(true);//启用十六进制存储
         return credentialsMatcher;
-    }*/
+    }
 }

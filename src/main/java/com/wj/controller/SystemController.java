@@ -94,6 +94,12 @@ public class SystemController extends BaseController {
         return mv;
     }
 
+    @GetMapping("login/kickout")
+    public String kickout(RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("message", "您的账号在另一台设备上登陆，如非本人操作，请立即修改密码！");
+        return "redirect:/login";
+    }
+
     /**
      * 退出
      * @return
