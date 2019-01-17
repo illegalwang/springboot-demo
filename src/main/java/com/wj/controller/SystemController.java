@@ -8,6 +8,7 @@ import freemarker.ext.util.ModelFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
@@ -81,6 +82,8 @@ public class SystemController extends BaseController {
 
         try {
             subject.login(token);
+        } catch (LockedAccountException e) {
+            redirectAttributes.addFlashAttribute("message", "密码失败次数过多，用户已被锁定。");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", "用户名或密码不正确！");
         }

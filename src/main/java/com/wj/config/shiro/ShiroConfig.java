@@ -278,8 +278,8 @@ public class ShiroConfig {
      * @return
      */
     @Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher() {
-        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+    public RetryHashedCredentialsMatcher hashedCredentialsMatcher() {
+        RetryHashedCredentialsMatcher credentialsMatcher = new RetryHashedCredentialsMatcher(ehCacheManager());
         credentialsMatcher.setHashAlgorithmName("MD5"); //散列算法使用md5
         credentialsMatcher.setHashIterations(1024); //散列次数，1024表示md5加密1024次
         credentialsMatcher.setStoredCredentialsHexEncoded(true);//启用十六进制存储
