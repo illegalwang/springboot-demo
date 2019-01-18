@@ -42,8 +42,8 @@
         <!--<table tableName="teacher" domainObjectName="Teacher"></table>-->
 
         <!-- domainObjectName=''来设置表别名 -->
-        <!--<table tableName="sys_user"></table>-->
-        <table tableName="index_web_group"></table>
-        <table tableName="index_group_child"></table>
+        <table tableName="sys_user"></table>
+        <!--<table tableName="index_web_group"></table>-->
+        <!--<table tableName="index_group_child"></table>-->
     </context>
 </generatorConfiguration>

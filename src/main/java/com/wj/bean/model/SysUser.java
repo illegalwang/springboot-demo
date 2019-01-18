@@ -2,8 +2,7 @@ package com.wj.bean.model;
 
 import java.io.Serializable;
 
-public class SysUser implements Serializable{
-
+public class SysUser implements Serializable {
     private String userId;
 
     private String username;
@@ -14,12 +13,9 @@ public class SysUser implements Serializable{
 
     private Integer indexTheme;
 
-    public SysUser() {
-    }
+    private String email;
 
-    public SysUser(String username) {
-        this.username = username;
-    }
+    private Integer status;
 
     public String getUserId() {
         return userId;
@@ -59,5 +55,21 @@ public class SysUser implements Serializable{
 
     public void setIndexTheme(Integer indexTheme) {
         this.indexTheme = indexTheme;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

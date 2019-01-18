@@ -117,6 +117,7 @@ public class ShiroConfig {
 
     /**
      * 启用shiro注解，可以在方法上加注解来控制权限
+     * 如 @RequiresPermissions("userInfo:add")
      * @param securityManager
      * @return
      */

@@ -5,14 +5,12 @@ import com.wj.service.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.*;
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.PostConstruct;
 
 /**
  * Shiro Realm用于做Authentication认证，Authorization授权的类。
@@ -55,7 +53,7 @@ public class ShiroRealm extends AuthorizingRealm {
         // 获取用户的输入的账号
         String username = (String) token.getPrincipal();
         // 通过username在数据库中查找User对象，进行判断
-        // TODO 这块可以做缓存，不做的话，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法。
+        // 配置了缓存之后，这里第一次会去数据库查询，之后会查缓存
         SysUser user = userService.findByUsername(username);
         if (null == user) {
             throw new UnknownAccountException("账户不存在");
