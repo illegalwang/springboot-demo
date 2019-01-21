@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by wj on 2019/1/7.
  */
 @Controller
-@RequestMapping("register")
+@RequestMapping("/register")
 public class RegisterController {
 
     private static final Log log = LogFactory.getLog(RegisterController.class);
@@ -31,7 +31,7 @@ public class RegisterController {
      * 去注册页面
      * @return
      */
-    @GetMapping("register")
+    @GetMapping("")
     public String toRegister() {
         return "system/register";
     }
@@ -41,12 +41,12 @@ public class RegisterController {
      * @param user
      * @return
      */
-    @PostMapping("register")
+    @PostMapping("")
     public ModelAndView register(SysUser user) throws InterruptedException {
         ModelAndView mv = new ModelAndView();
         int i = userService.addUser(user);
         if (i > 0) {
-            mv.setViewName("system/success");
+            mv.setViewName("/system/success");
         }
         return mv;
     }
@@ -56,10 +56,10 @@ public class RegisterController {
      * @param username
      * @return
      */
-    @PostMapping("sameUser")
+    @PostMapping("/sameUser")
     @ResponseBody
     public boolean sameUser(String username) {
-        log.info("***用户名验证**************************************************************************");
+        log.info("用户名验证");
         SysUser user = userService.findByUsername(username);
         if (null != user) {
             return false;
@@ -71,7 +71,7 @@ public class RegisterController {
      * 获取邮箱验证码
      * @return
      */
-    @RequestMapping("emailAuthCode")
+    @RequestMapping("/emailAuthCode")
     @ResponseBody
     public String emailAuthCode(String email) {
         String authCode = registerService.creatAuthCode(email);
@@ -82,7 +82,7 @@ public class RegisterController {
      * 注册成功跳转
      * @return
      */
-    @RequestMapping("success")
+    @RequestMapping("/success")
     public String success(String email) {
         return "system/success";
     }

@@ -31,9 +31,9 @@ public class SystemController extends BaseController {
      * 未登录访问主页
      * @return
      */
-    @GetMapping({"/", "index"})
+    @GetMapping({"/", "/index"})
     public ModelAndView index() {
-        log.info("****去主页*******************************************************************");
+        log.info("直接去主页");
         ModelAndView mv = new ModelAndView("index");
         WebBean webBean = userService.findWebByUsername(null);
         mv.addObject("webBean", webBean);
@@ -47,7 +47,7 @@ public class SystemController extends BaseController {
      */
     @GetMapping("/{username}")
     public ModelAndView index(@PathVariable String username) {
-        log.info("****去主页*******************************************************************");
+        log.info("登录后访问主页");
         ModelAndView mv = new ModelAndView("index");
         WebBean webBean = userService.findWebByUsername(username);
         mv.addObject("webBean", webBean);
@@ -58,7 +58,7 @@ public class SystemController extends BaseController {
      * 去login页面
      * @return
      */
-    @GetMapping("login")
+    @GetMapping("/login")
     public String toLogin() {
         return "system/login";
     }
@@ -97,7 +97,7 @@ public class SystemController extends BaseController {
         return mv;
     }
 
-    @GetMapping("login/kickout")
+    @GetMapping("/login/kickout")
     public String kickout(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("message", "您的账号在另一台设备上登陆，如非本人操作，请立即修改密码！");
         return "redirect:/login";
@@ -107,7 +107,7 @@ public class SystemController extends BaseController {
      * 退出
      * @return
      */
-    @GetMapping("logout")
+    @GetMapping("/logout")
     public String logout() {
         SecurityUtils.getSubject().logout();
         return "redirect:/";
@@ -117,10 +117,10 @@ public class SystemController extends BaseController {
      * TODO 测试
      * @return
      */
-    @GetMapping("test")
+    @GetMapping("/test")
     @RequiresUser
     public String test() {
-        log.info("****运行了测试方法***********************************************************************");
+        log.info("测试方法");
         return "test/test";
     }
 }

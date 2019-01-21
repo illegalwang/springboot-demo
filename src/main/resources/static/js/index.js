@@ -55,9 +55,89 @@ function getGroupId(groupId) {
  * */
 $(function () {
     $(".showMoreBtn").on('click', function () {
-        $(this).parents(".group-div").children(".group-child").children("ul").children(".li-hidden").slideToggle(200);
+        $(this).parents(".group-child").children("ul").children(".li-hidden").slideToggle(200);
         $(this).children("i").attr("class", $(this).children("i").attr("class") == "glyphicon glyphicon-triangle-top" ?
             "glyphicon glyphicon-triangle-bottom" : "glyphicon glyphicon-triangle-top");
         $(this).children("span").toggle();
     });
 });
+
+/**
+ * 拖动
+ * */
+var data;
+// 拖动到何处触发
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+// 拖起时触发
+function drag(ev) {
+    // 规定了被拖动的数据
+    // ev.dataTransfer.setData("Text",ev.target.id);
+    data = ev;
+}
+// 放置被拖动数据时触发
+function drop(ev) {
+    // ev.preventDefault();
+    // var data=ev.dataTransfer.getData("Text");
+    ev.appendChild(data);
+    var webId = data.id;
+    var groupId = ev.id;
+    $.ajax({
+        url: "group/child",
+        type: "PUT",
+        data: {"webId": webId, "groupId": groupId},
+        dataType: "json",
+        success: function (result) {
+            if (!result) {
+                console.log("child分组修改失败！");
+            }
+        }
+    });
+}
+
+/**
+ * 修改标题
+ */
+$(".titleH3").on("dblclick", function () {
+    var $parent = $(this);
+    var title = $parent.data("title");
+    var small = $parent.data("small");
+    var id = $parent.data("id");
+
+    var htmlText = "<div class='form-group-sm' style='padding: 5px;margin-left: 5px;'>"
+        + "<label for='updateTitle' class='col-sm-3 control-label'>标题：</label>"
+        + "<div class='col-sm-8'>"
+        + "<input class='form-control update-title' type='text' id='updateTitle' value='" + title + "'></div>"
+        + "</div>"
+        + "<div class='form-group-sm' style='padding: 5px;margin-left: 5px;'>"
+        + "<label for='updateSmall' class='col-sm-3 control-label'>备注：</label>"
+        + "<div class='col-sm-8'>"
+        + "<input class='form-control update-small' type='text' id='updateSmall' value='" + small + "'></div>"
+        + "</div>";
+    $parent.html(htmlText);
+    $parent.find(".update-title").focus();
+    $parent.find(".update-title").blur(function () {
+        $parent.find(".update-small").focus();
+    });
+    $parent.find(".update-small").blur(function () {
+        var updateTitle = $parent.find(".update-title").val();
+        var updateSmall = $parent.find(".update-small").val();
+        var htmlH3 = "<h3>" + updateTitle
+                        + "   <small>" + updateSmall + "</small>"
+                   + "</h3>";
+        $parent.html(htmlH3);
+        if (title != updateTitle || small != updateSmall) {
+            $.ajax({
+                url: "/group",
+                type: "PUT",
+                data: {"title": updateTitle, "littleTitle": updateSmall, "groupId": id},
+                dataType: "json",
+                success: function (result) {
+
+                }
+            });
+        }
+    });
+});
+

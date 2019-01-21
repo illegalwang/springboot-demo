@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <div class="col-sm-12">
                             <span class="pull-left"><a href="#">忘记密码？</a></span>
-                            <span class="pull-right"><a href="register/register">注册</a></span>
+                            <span class="pull-right"><a href="register">注册</a></span>
                         </div>
                     </div>
                 </form>

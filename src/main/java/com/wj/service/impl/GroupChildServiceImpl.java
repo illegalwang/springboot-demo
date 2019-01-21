@@ -39,6 +39,17 @@ public class GroupChildServiceImpl implements GroupChildService {
         }
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public int updateChildGroup(Integer webId, Integer groupId) {
+        return groupChildMapper.updateChildGroup(webId, groupId);
+    }
+
+    /**
+     * 得到web项图标的url
+     * @param str
+     * @return
+     */
     private String createIconUrl(String str) {
         StringBuffer iconUrl = new StringBuffer();
         try {
@@ -63,6 +74,11 @@ public class GroupChildServiceImpl implements GroupChildService {
         }
     }
 
+    /**
+     * 拼接web项图标url
+     * @param str
+     * @return
+     */
     private StringBuffer jointString(String str) {
         StringBuffer iconUrl = new StringBuffer();
         iconUrl.append(str);

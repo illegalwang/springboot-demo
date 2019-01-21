@@ -15,4 +15,8 @@
         WHERE
             su.username = #{username};
     </select>
+
+    <update id="updateChildGroup" parameterType="integer">
+        UPDATE index_group_child SET GROUP_ID = #{groupId} WHERE WEB_ID = #{webId};
+    </update>
 </mapper>

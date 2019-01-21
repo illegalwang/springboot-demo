@@ -24,12 +24,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest request, Exception exception) {
-        System.out.println("异常地址：" + request.getRequestURL());
-        System.out.println("异常原因：" + exception);
+        log.error("异常地址：" + request.getRequestURL());
+        log.error("异常原因：" + exception);
         log.error("-----GlobalExceptionHandler.defaultErrorHandler----------------------------------------------------------");
         log.error("以下是异常信息：");
         exception.printStackTrace();
-        ModelAndView mv = new ModelAndView("redirect:error");
+        ModelAndView mv = new ModelAndView("redirect:/error");
         return mv;
     }
 

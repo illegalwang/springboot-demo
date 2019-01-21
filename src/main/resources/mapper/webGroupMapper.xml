@@ -15,4 +15,13 @@
         WHERE
             su.USERNAME = #{username};
     </select>
+
+    <update id="updateGroupTitle">
+        UPDATE index_web_group
+        SET TITLE = #{title},
+         LITTLE_TITLE = #{littleTitle}
+        WHERE
+            GROUP_ID = #{groupId}
+        AND USER_ID = #{userId};
+    </update>
 </mapper>

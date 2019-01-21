@@ -23,17 +23,23 @@
                         <#list webBean.group as web>
                             <#if web.theme == x>
                                 <div class="group-child">
-                                    <h3>${web.title}
-                                        <#if web.littleTitle??>
-                                            <small>${web.littleTitle}</small>
-                                        </#if>
-                                    </h3>
+                                    <div class="titleH3" data-title="${web.title}" data-small="${web.littleTitle!''}"
+                                        data-id="${web.groupId}">
+                                        <h3>${web.title}
+                                            <#if web.littleTitle??>
+                                                <small>${web.littleTitle}</small>
+                                            </#if>
+                                        </h3>
+                                    </div>
                                     <img src="${CXT}${web.image!""}" onerror="src='${CXT}/img/webgroup/itwjimg.jpg'">
-                                    <#if web.children?? && (web.children?size>0)>
-                                        <ul>
+                                    <#-- ondragover事件规定在何处放置被拖动的数据 -->
+                                    <ul id="${web.groupId}" ondragover="allowDrop(event)" ondrop="drop(this)">
+                                        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                        <#if web.children?? && (web.children?size>0)>
                                             <#list web.children as child>
-                                                <li <#if child?index gte 7>class="li-hidden"
-                                                    style="display: none;"</#if>><h5>
+                                                <li id="${child.webId}" <#if child?index gte 7>class="li-hidden"
+                                                    style="display: none;"</#if> draggable="true" ondragstart="drag(this)"><h5>
                                                     <img src="${child.webIcon!""}"
                                                          onerror="src='${CXT}/img/webgroup/earth_service.png'">
                                                     <a href="${child.webUrl}" target="_blank">${child.webName}</a>
@@ -43,8 +49,8 @@
                                                     </#if>
                                                 </h5></li>
                                             </#list>
-                                        </ul>
-                                    </#if>
+                                        </#if>
+                                    </ul>
                                     <div class="group-foot">
                                         <#if web.children?size-7 &gt; 0>
                                             <a class="showMoreBtn text-muted" href="javascript:void(0)">

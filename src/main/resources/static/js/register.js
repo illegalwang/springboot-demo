@@ -21,7 +21,7 @@ $(function() {
                 rangelength: [6, 18],
                 // TODO 异步验证用户名是否重复，每次键盘按键抬起都会触发，影响性能
                 remote: {
-                    url: "sameUser",
+                    url: "/register/sameUser",
                     type: "post",
                     dataType: "json",
                     data:{
@@ -87,11 +87,10 @@ $("#buttonAuthCode").click(function() {
         $("#inputEmail").focus();
     } else {
         $.ajax({
-            url: "emailAuthCode",
+            url: "/register/emailAuthCode",
             type: "post",
             data: {email: email},
             success: function (result) {
-                console.log(result);
                 $("#inputCurrentAuthCode").val(result);
             }
         });

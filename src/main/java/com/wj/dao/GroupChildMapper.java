@@ -1,6 +1,7 @@
 package com.wj.dao;
 
 import com.wj.bean.model.IndexGroupChild;
+import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -10,4 +11,6 @@ import java.util.List;
  */
 public interface GroupChildMapper extends Mapper<IndexGroupChild> {
     List<IndexGroupChild> listByUsername(String username);
+
+    int updateChildGroup(@Param("webId") Integer webId, @Param("groupId") Integer groupId);
 }
