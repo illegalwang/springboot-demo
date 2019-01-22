@@ -86,7 +86,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        log.info("****进入并发登录控制***********************************************************************");
+        log.info("并发登录控制");
         Subject subject = getSubject(request, response);
         if (!subject.isAuthenticated() && !subject.isRemembered()) {
             // 如果没有登录，直接进行之后的流程
@@ -113,7 +113,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 
         // 如果队列里的sessionId数超出最大会话数，开始踢人
         while (deque.size() > maxSession) {
-            log.info("****准备踢人*******************************************************************");
+            log.info("同用户sessionId数量：" + deque.size()+ ";开始踢人。");
             Serializable kickoutSessionId = null;
             if (kickoutAfter) { // 如果踢出后者
                 kickoutSessionId = deque.removeFirst();

@@ -29,7 +29,7 @@ public class RetryHashedCredentialsMatcher extends HashedCredentialsMatcher {
 
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-        log.info("****登录失败次数统计*************************************************************************");
+        log.info("进入登录失败次数统计");
         // 获取用户名
         String username = (String) token.getPrincipal();
         // 获取用户登录次数
@@ -39,11 +39,10 @@ public class RetryHashedCredentialsMatcher extends HashedCredentialsMatcher {
             retryCount = new AtomicInteger(0);
             loginRetryCache.put(username, retryCount);
         }
-        log.info("****retryCount:" + retryCount + ".**************************************************************************");
         // 加1返回当前值
         if (retryCount.incrementAndGet() > 3) {
             // TODO 这里需要修改用户状态为锁定状态，之后解锁
-            log.info("****锁定用户，密码错误次数大于3**********************************************************************");
+            log.info("锁定用户，密码错误次数大于3，retryCount：" + retryCount);
             throw new LockedAccountException();
         }
         // 判断用户名密码是否正确

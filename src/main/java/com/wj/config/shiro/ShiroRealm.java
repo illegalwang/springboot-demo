@@ -48,7 +48,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
             throws AuthenticationException {
-        log.info("****用户认证**************************************************************");
+        log.info("用户认证");
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         // 获取用户的输入的账号
         String username = (String) token.getPrincipal();

@@ -19,7 +19,7 @@ public class MySessionListener implements SessionListener {
      */
     @Override
     public void onStart(Session session) {
-        log.info("****会话创建，触发会话监听器***********************************************************************");
+        log.info("会话创建，触发session监听器");
     }
 
     /**
@@ -28,7 +28,7 @@ public class MySessionListener implements SessionListener {
      */
     @Override
     public void onStop(Session session) {
-        log.info("****会话退出/过期，触发会话监听器***********************************************************************");
+        log.info("会话退出/过期，触发session监听器");
     }
 
     /**
@@ -37,6 +37,6 @@ public class MySessionListener implements SessionListener {
      */
     @Override
     public void onExpiration(Session session) {
-        log.info("****会话过期，触发会话监听器***********************************************************************");
+        log.info("会话过期，触发session监听器");
     }
 }
