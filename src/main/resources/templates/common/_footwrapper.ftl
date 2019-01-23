@@ -7,18 +7,18 @@
                     <section class="footsection">
                         <h5><b>网站信息</b></h5>
                         <ul>
-                            <li><a href="#">在线用户</a></li>
-                            <li><a href="#">系统设置</a></li>
+                            <li><a href="#">这里还没啥功能</a></li>
+                            <li><a href="#">没想好</a></li>
                         </ul>
                     </section>
                 </td>
                 <td>
                     <section class="footsection">
-                        <h5><b>xxxx</b></h5>
+                        <h5><b>这里也是</b></h5>
                         <ul>
-                            <li><a href="#">dddd</a></li>
-                            <li><a href="#">dddd</a></li>
-                            <li><a href="#">dddd</a></li>
+                            <li><a href="#">随便来点</a></li>
+                            <li><a href="#">再来点</a></li>
+                            <li><a href="#">瞎来点</a></li>
                         </ul>
                     </section>
                 </td>
@@ -47,7 +47,7 @@
         </table>
         <div class="text-center">
             <img src="${CXT}/img/index/logo2-lucency.png" alt="logo2"><br>
-            <span>${FOR_THE_RECORD!""}</span>
+            <span><a href="http://www.miitbeian.gov.cn/" target="_blank">${FOR_THE_RECORD!""}</a></span>
         </div>
     </div>
 </div>

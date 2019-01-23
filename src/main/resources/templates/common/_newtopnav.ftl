@@ -18,10 +18,10 @@
         </span>
         </@shiro.user>
         <@shiro.guest>
-        <span class="topnavspan pull-right">
+        <#--<span class="topnavspan pull-right">
             <a href="login">
                 <i class="glyphicon glyphicon-user"></i>&nbsp;登录</a>
-        </span>
+        </span>-->
         </@shiro.guest>
     </div>
 </div>

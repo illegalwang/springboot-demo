@@ -16,7 +16,32 @@
             su.username = #{username};
     </select>
 
+    <select id="listChildByGroupId" parameterType="int" resultType="com.wj.bean.model.IndexGroupChild">
+        select
+        igc.web_id "webId",
+        igc.group_id "groupId",
+        igc.web_url "webUrl",
+        igc.web_name "webName",
+        igc.web_icon "webIcon",
+        igc.if_des "ifDes"
+        FROM index_group_child igc
+        WHERE
+        igc.group_id = #{groupId};
+    </select>
+
     <update id="updateChildGroup" parameterType="integer">
         UPDATE index_group_child SET GROUP_ID = #{groupId} WHERE WEB_ID = #{webId};
     </update>
+
+    <delete id="deleteGroupChild">
+        DELETE
+        FROM
+            index_group_child
+        WHERE
+            group_id = #{groupId}
+        AND web_id IN
+        <foreach collection="webIds" item="webId" open="(" separator="," close=")">
+            #{webId}
+        </foreach>
+    </delete>
 </mapper>

@@ -1,17 +1,16 @@
 package com.wj.controller.system;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.wj.bean.model.IndexGroupChild;
 import com.wj.controller.BaseController;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by wj on 2018/12/26.
@@ -21,6 +20,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class GroupChildController extends BaseController {
 
     private static final Log log = LogFactory.getLog(GroupChildController.class);
+
+    @GetMapping()
+    @ResponseBody
+    public List<IndexGroupChild> listGroupChild(Integer groupId) {
+        return groupChildService.listChildByGroupId(groupId);
+    }
 
     @PostMapping()
     @RequiresUser
@@ -36,5 +41,13 @@ public class GroupChildController extends BaseController {
     public int updateChildGroup(Integer webId, Integer groupId) {
         log.info("修改child的分组-----web_id：" + webId + "；group_id：" + groupId);
         return groupChildService.updateChildGroup(webId, groupId);
+    }
+
+    @DeleteMapping()
+    @ResponseBody
+    public int deleteGroupChild(@RequestParam(value = "webIds[]",required = false) Integer[] webIds,
+                                @RequestParam(value = "groupId", required = false) Integer groupId) {
+        log.info("删除分组的child-----webIds：" + Arrays.toString(webIds) + ";groupId：" + groupId);
+        return groupChildService.deleteGroupChlid(webIds, groupId);
     }
 }

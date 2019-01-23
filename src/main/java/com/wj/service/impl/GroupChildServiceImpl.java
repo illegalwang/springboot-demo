@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by wj on 2018/12/26.
@@ -43,6 +44,18 @@ public class GroupChildServiceImpl implements GroupChildService {
     @Transactional(propagation = Propagation.REQUIRED)
     public int updateChildGroup(Integer webId, Integer groupId) {
         return groupChildMapper.updateChildGroup(webId, groupId);
+    }
+
+    @Override
+    public List<IndexGroupChild> listChildByGroupId(Integer groupId) {
+        List<IndexGroupChild> webBeans = groupChildMapper.listChildByGroupId(groupId);
+        log.info("根据GroupId：" + groupId + ";查询Child列表：" + webBeans);
+        return webBeans;
+    }
+
+    @Override
+    public int deleteGroupChlid(Integer[] webIds, Integer groupId) {
+        return groupChildMapper.deleteGroupChild(webIds, groupId);
     }
 
     /**

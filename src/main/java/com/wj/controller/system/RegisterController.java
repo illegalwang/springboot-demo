@@ -5,6 +5,7 @@ import com.wj.service.RegisterService;
 import com.wj.service.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,7 @@ public class RegisterController {
      * @return
      */
     @PostMapping("")
+    @RequiresUser // TODO 暂时不开放，加上此注解需要权限才可访问
     public ModelAndView register(SysUser user) throws InterruptedException {
         ModelAndView mv = new ModelAndView();
         int i = userService.addUser(user);

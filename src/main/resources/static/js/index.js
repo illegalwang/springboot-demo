@@ -47,7 +47,7 @@ $(".childCancelBtn").on('click', function () {
  * 添加栏目项a标签
  * */
 function getGroupId(groupId) {
-    $("#inputGroupId").val(groupId);
+    $("#childForm #inputGroupId").val(groupId);
 }
 
 /**
@@ -140,4 +140,41 @@ $(".titleH3").on("dblclick", function () {
         }
     });
 });
+
+/**
+ * 编辑栏目组按钮点击事件
+ * @param groupId
+ */
+function editGroup(groupId) {
+    $("#inputGroupId").val(groupId);
+    var $tbody = $("#childrenModal #childrenTable tbody");
+    $.ajax({
+        url: "/group/child",
+        type: "GET",
+        data: {"groupId": groupId},
+        dataType: "json",
+        success: function (result) {
+            var htmlStr = "";
+            var iconSrc = window.document.location.href + "img/webgroup/earth_service.png";
+            $.each(result, function (i, n) {
+                htmlStr += "<tr onclick='trClick(this)'>"
+                    + "<td><input type='checkbox' name='' id='" + n.webId + "' onclick='checkBtn(event)'></td>"
+                    + "<td><img src='" + n.webIcon + "' width='16px' height='16px' onerror='src=\""+ iconSrc
+                    + "\"'> " + n.webName + "</td>"
+                    + "<td width='100px'>"
+                    + "<div class='btn-group' role='group'>"
+                    + "<button class='btn btn-default btn-sm edit-web-btn' type='button' onclick='editClick(event)'>"
+                    + "<i class='glyphicon glyphicon-pencil'></i>"
+                    + "</button>"
+                    + "<button class='btn btn-default btn-sm del-web-btn' type='button' onclick='delClick(event)'>"
+                    + "<i class='glyphicon glyphicon-trash'></i>"
+                    + "</button>"
+                    + "</div>"
+                    + "</td>"
+                    + "</tr>";
+            });
+            $tbody.html(htmlStr);
+        }
+    });
+}
 
