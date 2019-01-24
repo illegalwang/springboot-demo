@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.security.auth.login.LoginException;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by wj on 2018/12/24.
@@ -67,5 +68,10 @@ public class WebGroupServiceImpl implements WebGroupService {
                 + ";groupId:" + groupId
                 + ";userId:" + userId);
         return webGroupMapper.updateGroupTitle(title, littleTitle, groupId, userId);
+    }
+
+    @Override
+    public List<IndexWebGroup> listGroup() {
+        return webGroupMapper.selectAll();
     }
 }

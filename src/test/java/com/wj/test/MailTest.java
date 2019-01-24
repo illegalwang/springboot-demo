@@ -19,7 +19,7 @@ public class MailTest {
 
     @Test
     public void testSimpleMail() {
-        emailUtil.sendSimpleMail("346021293@qq.com", "test spring boot mail", "second test");
+//        emailUtil.sendSimpleMail("346021293@qq.com", "test spring boot mail", "second test");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class MailTest {
                 "</table>\n" +
                 "</body>\n" +
                 "</html>";
-        emailUtil.sendHtmlMail("346021293@qq.com","test html mail", content);
+//        emailUtil.sendHtmlMail("346021293@qq.com","test html mail", content);
     }
 
 }

@@ -43,11 +43,30 @@ public class GroupChildController extends BaseController {
         return groupChildService.updateChildGroup(webId, groupId);
     }
 
+    /**
+     * 逻辑删除选中的children
+     * @param webIds
+     * @param groupId
+     * @return
+     */
     @DeleteMapping()
     @ResponseBody
-    public int deleteGroupChild(@RequestParam(value = "webIds[]",required = false) Integer[] webIds,
+    public int LogicDeleteGroupChild(@RequestParam(value = "webIds[]",required = false) Integer[] webIds,
                                 @RequestParam(value = "groupId", required = false) Integer groupId) {
-        log.info("删除分组的child-----webIds：" + Arrays.toString(webIds) + ";groupId：" + groupId);
-        return groupChildService.deleteGroupChlid(webIds, groupId);
+        log.info("逻辑删除分组的child-----webIds：" + Arrays.toString(webIds) + ";groupId：" + groupId);
+        return groupChildService.logicDeleteGroupChild(webIds, groupId);
+    }
+
+    /***
+     * 逻辑删除child根据id
+     * @param webId
+     * @param groupId
+     * @return
+     */
+    @DeleteMapping("/single")
+    @ResponseBody
+    public int LogicDeleteSingleChild(Integer webId, Integer groupId) {
+        log.info("逻辑删除单个child-----webId:" + webId + ";groupId:" + groupId);
+        return groupChildService.logicDeleteSingleChild(webId, groupId);
     }
 }

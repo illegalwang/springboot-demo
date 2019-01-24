@@ -8,7 +8,7 @@ import java.net.URL;
  * Created by wisi on 2018/12/26.
  */
 public class URLTest {
-    @Test
+//    @Test
     public void createIconUrl() {
         String str = "https://blog.csdn.net/wkl305268748/article/details/77619367/";
         String str1 = "http://jquery.cuishifeng.cn/index.html";

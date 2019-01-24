@@ -1,6 +1,5 @@
 package com.wj.config.shiro;
 
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.session.SessionListener;
@@ -145,7 +144,7 @@ public class ShiroConfig {
         // 注入sessionDAO
         sessionManager.setSessionDAO(sessionDAO());
         // 注入缓存管理
-        sessionManager.setCacheManager(ehCacheManager());
+//        sessionManager.setCacheManager(ehCacheManager());
         // session过期时间，毫秒为单位
         sessionManager.setGlobalSessionTimeout(sessionPastTimeout);
         // 是否开启删除无效的session对象，默认为true

@@ -16,57 +16,74 @@ $(function () {
 
 });
 
-    /*点击行checkbox选中*/
-    /*$("#childrenModal table tbody tr").click(function () {
-        var cb = $(this).find("input[type='checkbox']");
-        if (cb.prop("checked")) {
-            cb.prop("checked", false);
-        } else {
-            cb.prop("checked", true);
-        }
-    });*/
+/*点击行checkbox选中*/
+/*$("#childrenModal table tbody tr").click(function () {
+ var cb = $(this).find("input[type='checkbox']");
+ if (cb.prop("checked")) {
+ cb.prop("checked", false);
+ } else {
+ cb.prop("checked", true);
+ }
+ });*/
 /**
  * 点击行checkbox选中
  * @param o
  */
 function trClick(o) {
-        var cb = o.getElementsByTagName("input")[0];
-        if (cb.checked) {
-            cb.checked =  false;
-        } else {
-            cb.checked =  true;
-        }
+    var cb = o.getElementsByTagName("input")[0];
+    if (cb.checked) {
+        cb.checked = false;
+    } else {
+        cb.checked = true;
     }
+}
 /**
  * 复选框
  * @param event
  */
 function checkBtn(event) {
-        event.stopPropagation();
-    }
+    event.stopPropagation();
+}
 /**
  * 编辑按钮
  * @param event
  */
-function editClick(event) {
-        // 可以阻止事件冒泡
-        event.stopPropagation();
-    }
+function editClick(event, o) {
+    // 可以阻止事件冒泡
+    event.stopPropagation();
+}
 
 /**
  * 删除按钮
  * @param event
  */
-function delClick(event) {
-        // 可以阻止事件冒泡
-       event.stopPropagation();
+function delClick(event, o) {
+    // 可以阻止事件冒泡
+    event.stopPropagation();
+    if (confirm("确定删除次条目吗？")) {
+        var id = o.id;
+        var groupId = $("#inputGroupId").val();
+        $.ajax({
+            url: "/group/child/single",
+            type: "DELETE",
+            data: {webId: id, groupId: groupId},
+            dataType: "json",
+            success: function (result) {
+                if (result) {
+                    window.location.reload();
+                }
+            }
+        });
+    } else {
+        return;
     }
+}
 
 /**
  * 删除选中项按钮
  */
 function delSelect() {
-    if (confirm("确定要删除吗？")){
+    if (confirm("确定要删除吗？")) {
         var checkArr = $("#childrenModal tbody :checked");
         var groupId = $("#inputGroupId").val();
         var webIds = [];

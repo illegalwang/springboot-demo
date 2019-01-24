@@ -1,7 +1,9 @@
 <#macro newtopnav>
 <div class="topnavbar col-md-12">
     <div class="newtopnav">
-        <img src="${CXT}/img/index/logo2-lucency.png" alt="logo2" style="height: -webkit-fill-available;">
+        <a href="/index">
+            <img src="${CXT}/img/index/logo2-lucency.png" alt="logo2" style="height: -webkit-fill-available;">
+        </a>
         <@shiro.user>
         <span class="topnavspan pull-right">
             <a href="javascript:void(0)" id="loginInfoBtn">

@@ -3,6 +3,8 @@ package com.wj.service;
 import com.wj.bean.model.IndexWebGroup;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * Created by wj on 2018/12/24.
  */
@@ -22,4 +24,10 @@ public interface WebGroupService{
      * @return
      */
     int updateGroupTitle(String title, String littleTitle, Integer groupId);
+
+    /**
+     * 查询所有组
+     * @return
+     */
+    List<IndexWebGroup> listGroup();
 }

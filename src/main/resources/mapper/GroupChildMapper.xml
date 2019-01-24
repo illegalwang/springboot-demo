@@ -44,4 +44,23 @@
             #{webId}
         </foreach>
     </delete>
+    
+    <update id="logicDeleteGroupChild">
+        UPDATE index_group_child
+        SET GROUP_ID = '0'
+        WHERE
+            GROUP_ID = #{groupId}
+        AND WEB_ID IN
+        <foreach collection="webIds" item="webId" open="(" separator="," close=")">
+            #{webId}
+        </foreach>
+    </update>
+
+    <update id="logicDeleteSingleChild">
+        UPDATE index_group_child
+        SET GROUP_ID = '0'
+        WHERE
+        GROUP_ID = #{groupId}
+        AND WEB_ID = #{webId};
+    </update>
 </mapper>

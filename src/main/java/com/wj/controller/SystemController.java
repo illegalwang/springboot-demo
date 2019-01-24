@@ -1,6 +1,8 @@
 package com.wj.controller;
 
 import com.wj.bean.WebBean;
+import com.wj.bean.model.IndexGroupChild;
+import com.wj.bean.model.IndexWebGroup;
 import com.wj.bean.model.SysUser;
 import com.wj.service.UserService;
 import com.wj.utils.StringUtil;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 /**
  * Created by wj on 2018/12/12.
@@ -111,6 +115,21 @@ public class SystemController extends BaseController {
     public String logout() {
         SecurityUtils.getSubject().logout();
         return "redirect:/";
+    }
+
+    /**
+     * 进入垃圾回收页面
+     * @return
+     */
+    @GetMapping("/dump")
+    @RequiresUser
+    public ModelAndView dump() {
+        ModelAndView mv = new ModelAndView("system/dump");
+        List<IndexGroupChild> children = groupChildService.listChildByGroupId(0);
+        List<IndexWebGroup> groups = webGroupService.listGroup();
+        mv.addObject("children", children);
+        mv.addObject("groups", groups);
+        return mv;
     }
 
     /**

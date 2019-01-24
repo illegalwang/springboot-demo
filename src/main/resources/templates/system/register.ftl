@@ -1,6 +1,6 @@
 <#include "../common/_layout.ftl">
 <#include "useragreement.ftl">
-<@head title="注册"></@head>
+<@head title="WJ改变你的网站收藏夹-注册"></@head>
 <@body>
 <div class="container-fluid register-page">
     <div class="row">

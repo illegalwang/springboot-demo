@@ -33,5 +33,21 @@ public interface GroupChildService {
      * @param groupId
      * @return
      */
-    int deleteGroupChlid(Integer[] webIds, Integer groupId);
+    int deleteGroupChild(Integer[] webIds, Integer groupId);
+
+    /**
+     * 逻辑删除选中的child， group设置为0
+     * @param webIds
+     * @param groupId
+     * @return
+     */
+    int logicDeleteGroupChild(Integer[] webIds, Integer groupId);
+
+    /**
+     * 逻辑删除child根据id
+     * @param webId
+     * @param groupId
+     * @return
+     */
+    int logicDeleteSingleChild(Integer webId, Integer groupId);
 }

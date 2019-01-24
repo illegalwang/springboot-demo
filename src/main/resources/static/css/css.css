@@ -67,6 +67,15 @@ body {
     padding: 0px;
 }
 
+.body-inside-div .top-btn-div button {
+    margin-left: 10px;
+}
+
+.body-inside-div .top-btn-div a {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
 .body-inside-div .group-div {
     /*float: left;*/
     padding: 0px 14px;
@@ -275,4 +284,12 @@ body {
 
 .register-page form span {
     background-color: white;
+}
+
+/*垃圾站页面样式*/
+.body-inside-div .row .dump-list {
+    background-color: white;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: solid 1px #e0dddf;
 }

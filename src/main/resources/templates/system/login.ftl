@@ -1,5 +1,5 @@
 <#include "../common/_layout.ftl">
-<@head title="登录"></@head>
+<@head title="WJ改变你的网站收藏夹-登录"></@head>
 <@body>
 <div class="container-fluid">
     <div class="row">

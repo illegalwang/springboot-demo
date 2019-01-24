@@ -18,4 +18,8 @@ public interface GroupChildMapper extends Mapper<IndexGroupChild> {
     List<IndexGroupChild> listChildByGroupId(Integer groupId);
 
     int deleteGroupChild(@Param("webIds") Integer[] webIds, @Param("groupId") Integer groupId);
+
+    int logicDeleteGroupChild(@Param("webIds") Integer[] webIds, @Param("groupId") Integer groupId);
+
+    int logicDeleteSingleChild(@Param("webId") Integer webId, @Param("groupId") Integer groupId);
 }

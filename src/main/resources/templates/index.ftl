@@ -13,6 +13,9 @@
     </div>-->
         <@shiro.user>
         <div class="top-btn-div col-md-12">
+            <a href="/dump" class="btn btn-danger pull-right" title="垃圾站">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
             <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#groupModal">
                 创建栏目
             </button>
