@@ -30,4 +30,11 @@ public interface WebGroupService{
      * @return
      */
     List<IndexWebGroup> listGroup();
+
+    /**
+     * 根据id删除分组
+     * @param groupId
+     * @return
+     */
+    int deleteGroup(Integer groupId);
 }

@@ -54,16 +54,19 @@ public class GroupChildServiceImpl implements GroupChildService {
     }
 
     @Override
-    public int logicDeleteGroupChild(Integer[] webIds, Integer groupId) {
-        return groupChildMapper.logicDeleteGroupChild(webIds, groupId);
-    }
-
-    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public int logicDeleteSingleChild(Integer webId, Integer groupId) {
         return groupChildMapper.logicDeleteSingleChild(webId, groupId);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public int logicDeleteGroupChild(Integer[] webIds, Integer groupId) {
+        return groupChildMapper.logicDeleteGroupChild(webIds, groupId);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public int deleteGroupChild(Integer[] webIds, Integer groupId) {
         return groupChildMapper.deleteGroupChild(webIds, groupId);
     }

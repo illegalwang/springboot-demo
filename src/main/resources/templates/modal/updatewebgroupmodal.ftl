@@ -38,8 +38,9 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-danger" onclick="delSelect()">删除选中项</button>
+                    <button type="button" class="btn btn-warning pull-left del-group">删除本组</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-danger" onclick="delSelect()">删除选中项</button>
                 </div>
             </div>
         </div>

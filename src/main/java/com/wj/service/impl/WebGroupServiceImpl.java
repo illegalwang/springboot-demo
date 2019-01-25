@@ -1,14 +1,13 @@
 package com.wj.service.impl;
 
 import com.wj.bean.model.IndexWebGroup;
+import com.wj.bean.model.IndexWebGroupExample;
 import com.wj.bean.model.SysUser;
 import com.wj.config.exception.SystemException;
+import com.wj.dao.GroupChildMapper;
 import com.wj.dao.WebGroupMapper;
 import com.wj.service.WebGroupService;
-import com.wj.utils.Constants;
 import com.wj.utils.FileUtil;
-import com.wj.utils.PathUtil;
-import com.wj.utils.StringUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.SecurityUtils;
@@ -18,9 +17,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.security.auth.login.LoginException;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -34,6 +30,9 @@ public class WebGroupServiceImpl implements WebGroupService {
 
     @Autowired
     private WebGroupMapper webGroupMapper;
+
+    @Autowired
+    private GroupChildMapper groupChildMapper;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -73,5 +72,19 @@ public class WebGroupServiceImpl implements WebGroupService {
     @Override
     public List<IndexWebGroup> listGroup() {
         return webGroupMapper.selectAll();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public int deleteGroup(Integer groupId) {
+        IndexWebGroupExample example = new IndexWebGroupExample();
+        example.createCriteria().andGroupIdEqualTo(groupId);
+        int result = webGroupMapper.deleteByExample(example);
+        log.info("删除分组-----groupId:" + groupId);
+        if (result > 0) {
+            log.info("删除分组，修改child放回垃圾箱-----result：" + result + "; groupId: " + groupId);
+            groupChildMapper.logicDeleteGroupAllChild(groupId);
+        }
+        return result;
     }
 }

@@ -14,6 +14,26 @@ $(function () {
         }
     });
 
+    $(".del-group").on("click", function () {
+        if (confirm("删除本组，子项目将放入垃圾站，确定删除吗？")) {
+            var groupId = $("#inputGroupId").val();
+            console.log(groupId);
+            $.ajax({
+                url: "/group",
+                type: "DELETE",
+                data: {groupId: groupId},
+                dataType: "json",
+                success: function (result) {
+                    if (result > 0) {
+                        window.location.reload();
+                    }
+                }
+            });
+        } else {
+            return;
+        }
+    });
+
 });
 
 /*点击行checkbox选中*/

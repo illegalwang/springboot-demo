@@ -63,4 +63,11 @@
         GROUP_ID = #{groupId}
         AND WEB_ID = #{webId};
     </update>
+
+    <update id="logicDeleteGroupAllChild">
+        UPDATE index_group_child
+        SET group_id = '0'
+        WHERE
+            group_id = #{groupId};
+    </update>
 </mapper>
