@@ -3,7 +3,10 @@
 <@body>
     <@newtopnav></@newtopnav>
     <@bodywrapper>
-    <#if children?? && (children?size>0)>
+    <div>
+        pageInfo : ${pageInfo}
+    </div>
+        <#if children?? && (children?size>0)>
         <#list children as child>
         <div class="row">
             <div class="col-md-8 col-md-offset-2 dump-list">

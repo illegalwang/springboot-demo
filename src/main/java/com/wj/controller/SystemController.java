@@ -1,5 +1,7 @@
 package com.wj.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wj.bean.WebBean;
 import com.wj.bean.model.IndexGroupChild;
 import com.wj.bean.model.IndexWebGroup;
@@ -113,7 +115,8 @@ public class SystemController extends BaseController {
      */
     @GetMapping("/logout")
     public String logout() {
-        SecurityUtils.getSubject().logout();
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
         return "redirect:/";
     }
 
@@ -127,7 +130,9 @@ public class SystemController extends BaseController {
         ModelAndView mv = new ModelAndView("system/dump");
         List<IndexGroupChild> children = groupChildService.listChildByGroupId(0);
         List<IndexWebGroup> groups = webGroupService.listGroup();
-        mv.addObject("children", children);
+        PageHelper.startPage(1, 10);
+        PageInfo<IndexGroupChild> pageInfo = new PageInfo<>(children);
+        mv.addObject("pageInfo", pageInfo);
         mv.addObject("groups", groups);
         return mv;
     }

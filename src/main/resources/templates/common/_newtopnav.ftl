@@ -15,7 +15,7 @@
                 <li><a href="#">Lorem ipsum.</a></li>
                 <li><a href="#">Lorem ipsum.</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="logout">退出</a></li>
+                <li><a href="/logout">退出</a></li>
             </ul>
         </span>
         </@shiro.user>
